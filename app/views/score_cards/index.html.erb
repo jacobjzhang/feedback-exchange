@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Score Cards</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Idea rating</th>
+      <th>Idea</th>
+      <th>Desing rating</th>
+      <th>Design</th>
+      <th>Experience rating</th>
+      <th>Experience</th>
+      <th>Usability rating</th>
+      <th>Usability</th>
+      <th>Monetization rating</th>
+      <th>Monetization</th>
+      <th>Suggestions</th>
+      <th>Submitted at</th>
+      <th>User</th>
+      <th>Project</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @score_cards.each do |score_card| %>
+      <tr>
+        <td><%= score_card.idea_rating %></td>
+        <td><%= score_card.idea %></td>
+        <td><%= score_card.desing_rating %></td>
+        <td><%= score_card.design %></td>
+        <td><%= score_card.experience_rating %></td>
+        <td><%= score_card.experience %></td>
+        <td><%= score_card.usability_rating %></td>
+        <td><%= score_card.usability %></td>
+        <td><%= score_card.monetization_rating %></td>
+        <td><%= score_card.monetization %></td>
+        <td><%= score_card.suggestions %></td>
+        <td><%= score_card.submitted_at %></td>
+        <td><%= score_card.user %></td>
+        <td><%= score_card.project %></td>
+        <td><%= link_to 'Show', score_card %></td>
+        <td><%= link_to 'Edit', edit_score_card_path(score_card) %></td>
+        <td><%= link_to 'Destroy', score_card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Score Card', new_score_card_path %>

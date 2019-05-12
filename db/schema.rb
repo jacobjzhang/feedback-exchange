@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190512173337) do
+ActiveRecord::Schema.define(version: 20190512173417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,27 @@ ActiveRecord::Schema.define(version: 20190512173337) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_projects_on_user_id"
+  end
+
+  create_table "score_cards", force: :cascade do |t|
+    t.integer "idea_rating"
+    t.text "idea"
+    t.integer "desing_rating"
+    t.text "design"
+    t.integer "experience_rating"
+    t.text "experience"
+    t.integer "usability_rating"
+    t.text "usability"
+    t.integer "monetization_rating"
+    t.text "monetization"
+    t.text "suggestions"
+    t.datetime "submitted_at"
+    t.bigint "user_id"
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_score_cards_on_project_id"
+    t.index ["user_id"], name: "index_score_cards_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -38,4 +59,6 @@ ActiveRecord::Schema.define(version: 20190512173337) do
   end
 
   add_foreign_key "projects", "users"
+  add_foreign_key "score_cards", "projects"
+  add_foreign_key "score_cards", "users"
 end
