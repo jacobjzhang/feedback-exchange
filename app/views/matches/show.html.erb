@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Creator first:</strong>
+  <%= @match.creator_first %>
+</p>
+
+<p>
+  <strong>Creator second:</strong>
+  <%= @match.creator_second %>
+</p>
+
+<p>
+  <strong>Score card from first:</strong>
+  <%= @match.score_card_from_first %>
+</p>
+
+<p>
+  <strong>Score card from second:</strong>
+  <%= @match.score_card_from_second %>
+</p>
+
+<p>
+  <strong>Will exchange info first:</strong>
+  <%= @match.will_exchange_info_first %>
+</p>
+
+<p>
+  <strong>Will exchange info second:</strong>
+  <%= @match.will_exchange_info_second %>
+</p>
+
+<%= link_to 'Edit', edit_match_path(@match) %> |
+<%= link_to 'Back', matches_path %>

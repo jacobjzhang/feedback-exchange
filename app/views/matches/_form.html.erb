@@ -1,0 +1,47 @@
+<%= form_with(model: match, local: true) do |form| %>
+  <% if match.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(match.errors.count, "error") %> prohibited this match from being saved:</h2>
+
+      <ul>
+      <% match.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :creator_first %>
+    <%= form.number_field :creator_first, id: :match_creator_first %>
+  </div>
+
+  <div class="field">
+    <%= form.label :creator_second %>
+    <%= form.number_field :creator_second, id: :match_creator_second %>
+  </div>
+
+  <div class="field">
+    <%= form.label :score_card_from_first %>
+    <%= form.number_field :score_card_from_first, id: :match_score_card_from_first %>
+  </div>
+
+  <div class="field">
+    <%= form.label :score_card_from_second %>
+    <%= form.number_field :score_card_from_second, id: :match_score_card_from_second %>
+  </div>
+
+  <div class="field">
+    <%= form.label :will_exchange_info_first %>
+    <%= form.check_box :will_exchange_info_first, id: :match_will_exchange_info_first %>
+  </div>
+
+  <div class="field">
+    <%= form.label :will_exchange_info_second %>
+    <%= form.check_box :will_exchange_info_second, id: :match_will_exchange_info_second %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

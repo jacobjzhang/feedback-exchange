@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :matches
   resources :score_cards
   resources :projects
   devise_for :users

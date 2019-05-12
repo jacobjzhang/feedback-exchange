@@ -3,7 +3,7 @@ class CreateScoreCards < ActiveRecord::Migration[5.1]
     create_table :score_cards do |t|
       t.integer :idea_rating
       t.text :idea
-      t.integer :desing_rating
+      t.integer :design_rating
       t.text :design
       t.integer :experience_rating
       t.text :experience

@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190512173417) do
+ActiveRecord::Schema.define(version: 20190512174534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "matches", force: :cascade do |t|
+    t.integer "creator_first"
+    t.integer "creator_second"
+    t.integer "score_card_from_first"
+    t.integer "score_card_from_second"
+    t.boolean "will_exchange_info_first"
+    t.boolean "will_exchange_info_second"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
@@ -28,7 +39,7 @@ ActiveRecord::Schema.define(version: 20190512173417) do
   create_table "score_cards", force: :cascade do |t|
     t.integer "idea_rating"
     t.text "idea"
-    t.integer "desing_rating"
+    t.integer "design_rating"
     t.text "design"
     t.integer "experience_rating"
     t.text "experience"
