@@ -1,26 +1,26 @@
 <p id="notice"><%= notice %></p>
-<h1 class="headline-title display-4 font-weight-bold">Projects</h1>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">URL</th>
-      <th scope="col">Description</th>
-      <th scope="col" colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% current_user.projects.each do |project| %>
-      <tr>
-        <td><%= project.name %></td>
-        <td><%= project.url %></td>
-        <td><%= project.description %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'DELETE', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
-<%= link_to 'Add a Project', new_project_path, class: "btn btn-warning" %>
+<h1 class="headline-title display-4 font-weight-bold">My Projects</h1>
+<%= link_to 'Add a Project', new_project_path, class: "btn btn-warning my-3" %>
+<% @projects.each do |project| %>
+  <div class="row mt-2 mb-4">
+    <div class="col-lg-6 col-sm-12">
+      <img src="<%= "//image.thum.io/get/auth/5172-feedbackexchange/crop/1000/#{project.url}" %>" class="img-fluid shadow rounded" />
+    </div>
+    <div class="col-lg-6 col-sm-12">
+      <p>
+        <h4>Name:</h4>
+        <%= project.name %>
+      </p>
+      <p>
+        <h4>URL:</h4>
+        <%= project.url %>
+      </p>
+      <p>
+        <h4>Description:</h4>
+        <%= project.description %>
+      </p>
+      <%= link_to 'Edit', edit_project_path(project) %> |
+      <%= link_to 'Back', projects_path %>
+    </div>
+  </div>
+<% end %>

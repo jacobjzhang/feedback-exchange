@@ -28,10 +28,13 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :sites_to_review %>
+    <%= f.collection_select :interests, Category.all, :name, :label, { selected: resource.interest_list }, { multiple: true, class: "multi-select w-100" } %>
+  </div>  
+
+  <div class="form-group">
     <%= f.submit t('.update'), class: 'btn btn-primary' %>
   </div>
 <% end %>
-
-<p><%= t('.unhappy') %>? <%= link_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %>.</p>
 
 <%= link_to t('.back'), :back %>
