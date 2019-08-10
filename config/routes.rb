@@ -7,8 +7,7 @@ Rails.application.routes.draw do
   # get '/projects/:id/matches', to: 'projects#matches'
   # get '/projects/:project_id/new_match', to: 'matches#new'
   devise_for :users, controllers: {
-    registrations: 'users_registrations',
-    confirmations: 'confirmations'
+    registrations: 'users_registrations'
   }
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'

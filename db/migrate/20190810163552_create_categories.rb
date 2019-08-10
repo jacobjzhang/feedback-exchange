@@ -14,7 +14,7 @@ class CreateCategories < ActiveRecord::Migration[5.1]
       ['games', 'Games'],
       ['health', 'Health'],
       ['home', 'Home'],
-      ['kids and teens', 'Kids and Teens'],
+      ['kids-and-teens', 'Kids and Teens'],
       ['news', 'News'],
       ['recreation', 'Recreation'],
       ['reference', 'Reference'],

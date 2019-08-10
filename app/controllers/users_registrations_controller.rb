@@ -11,7 +11,11 @@ class UsersRegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    byebug
+    if params[:user]['interests']
+      interests = params[:user]['interests'].compact
+      params[:user]['tag_list'] = interests.join(', ')
+    end
+
     super
   end
 
