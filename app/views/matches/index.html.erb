@@ -1,7 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<h1 class="headline-title display-4 font-weight-bold">Matches</h1>
+<h1 class="headline-title display-4 font-weight-bold">To Review</h1>
 
 <% @matches.each do |match| %>
-  <img src="<%= "//image.thum.io/get/auth/5172-feedbackexchange/#{match.project.url}" %>" />
+  <div class="row mt-2 mb-4">
+    <div class="col-lg-6 col-sm-12 thumb-mid shadow"
+      style="background: linear-gradient(
+        rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0.4)
+      ), url(<%= "//image.thum.io/get/auth/5172-feedbackexchange/crop/1000/#{match.project.url}" %>); background-size: cover;">
+      <a href="<%= match.project.url %>" target="_blank" class="link-full-div">      
+        <h2>Visit SITE</h2>
+      </a>
+    </div>
+    <div class="col-lg-6 col-sm-12">
+      <p>
+        <h4>Name</h4>
+        <%= match.project.name %>
+      </p>
+      <p>
+        <h4>URL</h4>
+        <%= link_to match.project.url, match.project.url, target: '_blank' %>
+      </p>
+      <p>
+        <h4>Description</h4>
+        <%= match.project.description %>
+      </p>
+      <p><a class="btn btn-warning btn-lg shadow" href="/review" role="button info">Fill out scorecard &raquo;</a></p>      
+    </div>
+  </div>
 <% end %>

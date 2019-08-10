@@ -5,7 +5,7 @@ class MatchesController < ApplicationController
   # GET /matches
   # GET /matches.json
   def index
-    @matches = Match.where(user: current_user)
+    @matches = Match.where(user: current_user).where(status: 'pending')
   end
 
   # GET /matches/1

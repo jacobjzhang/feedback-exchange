@@ -1,16 +1,18 @@
 class MatchCreator < ApplicationRecord
   def self.create_matches
     User.includes(:taggings).where(status: 'idle').each do |user|
-      next_user = false
       interest_list = user.interest_list
       interest_list.each do |interest|
+        # find_and_match_project returns true if a match was made
         made_match = find_and_match_project(user, interest)
+        # move onto the next user if there's a match
         break if made_match
       end
     end
   end
 
   def self.find_and_match_project(user, interest)
+    # more efficient project lookups
     if memo[interest]
       potential_projects = memo[interest]
     else
@@ -23,10 +25,9 @@ class MatchCreator < ApplicationRecord
     projects_by_others.each do |project|
       match = Match.find_by(project: project, user: user)
 
-      next if match.count > 0
+      next if match
 
-      byebug
-
+      match = Match.new(project: project, user: user)
       if match.save
         return true
       end
