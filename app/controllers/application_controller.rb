@@ -23,9 +23,6 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :tag_list])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :interest_list])
   end
-end
-class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
 end

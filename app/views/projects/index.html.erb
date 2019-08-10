@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<h1>Projects</h1>
+<h1 class="headline-title display-4 font-weight-bold">Projects</h1>
 <table class="table">
   <thead>
     <tr>
@@ -17,11 +17,10 @@
         <td><%= project.description %></td>
         <td><%= link_to 'Show', project %></td>
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Matches', project_path(project) + '/matches' %></td>
-        <td><%= link_to 'X', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'DELETE', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <br>
-<%= link_to 'New Project', new_project_path %>
+<%= link_to 'Add a Project', new_project_path, class: "btn btn-warning" %>

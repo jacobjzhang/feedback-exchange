@@ -11,11 +11,7 @@ class UsersRegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    if params[:user]['interests']
-      interests = params[:user]['interests'].compact
-      params[:user]['tag_list'] = interests.join(', ')
-    end
-
+    handle_interests
     super
   end
 
@@ -26,12 +22,21 @@ class UsersRegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
+    handle_interests
     super
   end
 
   # DELETE /resource
   def destroy
     super
+  end
+
+  def handle_interests
+    if params[:user]['interests']
+      interests = params[:user]['interests'].compact
+      params[:user]['interest_list'] = interests.join(', ')
+      params[:user].delete('interests')
+    end
   end
 
   # GET /resource/cancel

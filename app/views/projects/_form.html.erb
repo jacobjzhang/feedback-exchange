@@ -21,6 +21,10 @@
     <%= form.label :description %>
     <%= form.text_area :description, id: :project_description, class: 'form-control', input_html: { rows: 5 } %>
   </div>
+  <div class="form-group">
+    <%= form.label :categories %>
+    <%= form.collection_select :categories, Category.all, :name, :label, { }, { multiple: true, class: "multi-select w-100" } %>
+  </div>  
   <div class="actions">
     <%= form.button :submit, class: 'btn btn-primary' %>
   </div>

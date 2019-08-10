@@ -1,11 +1,8 @@
 class Project < ApplicationRecord
+  acts_as_taggable_on :categories
+
   belongs_to :user
+  has_many :matches
 
-  def matches
-    Match.where(project_one: id) + Match.where(project_two: id)
-  end
-
-  def existing_matches
-    matches.select { |m| m.completed == false }
-  end
+  def categories; end
 end

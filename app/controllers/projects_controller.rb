@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :matches, :edit, :update, :destroy]
-  before_action :authenticate_user!  
+  before_action :authenticate_user!
 
   # GET /projects
   # GET /projects.json
@@ -28,6 +28,8 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
+    handle_categories
+
     @project = Project.new(project_params.merge(user: current_user))
 
     respond_to do |format|
@@ -44,6 +46,7 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
+    handle_categories
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
@@ -66,6 +69,14 @@ class ProjectsController < ApplicationController
   end
 
   private
+    def handle_categories
+      if params[:project]['categories']
+        categories = params[:project]['categories'].compact
+        params[:project]['category_list'] = categories.join(', ')
+        params[:project].delete('categories')
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = Project.find(params[:id])
@@ -73,6 +84,6 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :url, :description, :user_id)
+      params.require(:project).permit(:name, :url, :description, :user_id, :category_list, categories: [])
     end
 end
