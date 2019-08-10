@@ -45,15 +45,15 @@ ActiveRecord::Schema.define(version: 20190810194140) do
   end
 
   create_table "score_cards", force: :cascade do |t|
-    t.integer "idea_rating"
+    t.decimal "idea_rating"
     t.text "idea"
-    t.integer "design_rating"
+    t.decimal "design_rating"
     t.text "design"
-    t.integer "experience_rating"
+    t.decimal "experience_rating"
     t.text "experience"
-    t.integer "usability_rating"
+    t.decimal "usability_rating"
     t.text "usability"
-    t.integer "monetization_rating"
+    t.decimal "monetization_rating"
     t.text "monetization"
     t.text "suggestions"
     t.datetime "submitted_at"

@@ -1,5 +1,6 @@
 class ScoreCardsController < ApplicationController
-  before_action :set_score_card, only: [:show, :edit, :update, :destroy]
+  before_action :set_project
+  before_action :set_score_card, only: [:show, :edit, :update, :destroy]  
 
   # GET /score_cards
   # GET /score_cards.json
@@ -43,11 +44,11 @@ class ScoreCardsController < ApplicationController
   # POST /score_cards
   # POST /score_cards.json
   def create
-    @score_card = ScoreCard.new(score_card_params)
+    @score_card = ScoreCard.new(score_card_params.merge(user: current_user, project: @project))
 
     respond_to do |format|
       if @score_card.save
-        format.html { redirect_to @score_card, notice: 'Score card was successfully created.' }
+        format.html { redirect_to project_score_card_path(@project, @score_card), notice: 'Score card was successfully created.' }
         format.json { render :show, status: :created, location: @score_card }
       else
         format.html { render :new }
@@ -81,6 +82,12 @@ class ScoreCardsController < ApplicationController
   end
 
   private
+    def set_project
+      if params[:project_id]
+        @project = Project.find(params[:project_id])
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_score_card
       @score_card = ScoreCard.find(params[:id])

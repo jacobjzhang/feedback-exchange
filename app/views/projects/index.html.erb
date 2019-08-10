@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h1 class="headline-title display-4 font-weight-bold">My Projects</h1>
-<%= link_to 'Add a Project', new_project_path, class: "btn btn-warning my-3" %>
+<%= link_to 'Add a Project +', new_project_path, class: "btn btn-warning btn-lg shadow my-3" %>
 <% @projects.each do |project| %>
   <div class="row mt-2 mb-4">
     <div class="col-lg-6 col-sm-12">
@@ -8,19 +8,18 @@
     </div>
     <div class="col-lg-6 col-sm-12">
       <p>
-        <h4>Name:</h4>
+        <h4>Name</h4>
         <%= project.name %>
       </p>
       <p>
-        <h4>URL:</h4>
-        <%= project.url %>
+        <h4>URL</h4>
+        <%= link_to project.url, project.url, target: '_blank' %>
       </p>
       <p>
-        <h4>Description:</h4>
+        <h4>Description</h4>
         <%= project.description %>
       </p>
-      <%= link_to 'Edit', edit_project_path(project) %> |
-      <%= link_to 'Back', projects_path %>
+      <p><a class="btn btn-warning shadow" href="<%= edit_project_path(project) %>" role="button info">Edit project &raquo;</a></p>      
     </div>
   </div>
 <% end %>

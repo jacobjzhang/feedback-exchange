@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   get '/score_card_example', to: 'score_cards#example'
-  resources :projects
+  resources :projects do
+    resources :score_cards
+  end
   resources :matches, :path => "review"
-  resources :score_cards
 
   # get '/projects/:id/matches', to: 'projects#matches'
   # get '/projects/:project_id/new_match', to: 'matches#new'
