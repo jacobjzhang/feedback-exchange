@@ -1,5 +1,6 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /matches
   # GET /matches.json
@@ -14,7 +15,12 @@ class MatchesController < ApplicationController
 
   # GET /matches/new
   def new
-    @match = Match.new
+    project = Project.find(params[:project_id])
+    if project.existing_matches
+      flash[:alert] = 'There are already outstanding matches for this project that are not complete.'
+    else
+      @match = MatchCreator.create_match
+    end
   end
 
   # GET /matches/1/edit

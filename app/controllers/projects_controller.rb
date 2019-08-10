@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :matches, :edit, :update, :destroy]
+  before_action :authenticate_user!  
 
   # GET /projects
   # GET /projects.json
@@ -10,6 +11,9 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+  end
+
+  def matches
   end
 
   # GET /projects/new
@@ -24,7 +28,7 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(project_params)
+    @project = Project.new(project_params.merge(user: current_user))
 
     respond_to do |format|
       if @project.save

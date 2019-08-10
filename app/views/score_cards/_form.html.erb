@@ -2,85 +2,69 @@
   <% if score_card.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(score_card.errors.count, "error") %> prohibited this score_card from being saved:</h2>
-
       <ul>
-      <% score_card.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% score_card.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-
   <div class="field">
     <%= form.label :idea_rating %>
     <%= form.number_field :idea_rating, id: :score_card_idea_rating %>
   </div>
-
   <div class="field">
     <%= form.label :idea %>
     <%= form.text_area :idea, id: :score_card_idea %>
   </div>
-
   <div class="field">
-    <%= form.label :desing_rating %>
-    <%= form.number_field :desing_rating, id: :score_card_desing_rating %>
+    <%= form.label :design_rating %>
+    <%= form.number_field :design_rating, id: :score_card_design_rating %>
   </div>
-
   <div class="field">
     <%= form.label :design %>
     <%= form.text_area :design, id: :score_card_design %>
   </div>
-
   <div class="field">
     <%= form.label :experience_rating %>
     <%= form.number_field :experience_rating, id: :score_card_experience_rating %>
   </div>
-
   <div class="field">
     <%= form.label :experience %>
     <%= form.text_area :experience, id: :score_card_experience %>
   </div>
-
   <div class="field">
     <%= form.label :usability_rating %>
     <%= form.number_field :usability_rating, id: :score_card_usability_rating %>
   </div>
-
   <div class="field">
     <%= form.label :usability %>
     <%= form.text_area :usability, id: :score_card_usability %>
   </div>
-
   <div class="field">
     <%= form.label :monetization_rating %>
     <%= form.number_field :monetization_rating, id: :score_card_monetization_rating %>
   </div>
-
   <div class="field">
     <%= form.label :monetization %>
     <%= form.text_area :monetization, id: :score_card_monetization %>
   </div>
-
   <div class="field">
     <%= form.label :suggestions %>
     <%= form.text_area :suggestions, id: :score_card_suggestions %>
   </div>
-
   <div class="field">
     <%= form.label :submitted_at %>
     <%= form.datetime_select :submitted_at, id: :score_card_submitted_at %>
   </div>
-
   <div class="field">
     <%= form.label :user_id %>
     <%= form.text_field :user_id, id: :score_card_user_id %>
   </div>
-
   <div class="field">
     <%= form.label :project_id %>
     <%= form.text_field :project_id, id: :score_card_project_id %>
   </div>
-
   <div class="actions">
     <%= form.submit %>
   </div>

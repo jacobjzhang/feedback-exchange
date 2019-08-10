@@ -10,20 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190512174534) do
+ActiveRecord::Schema.define(version: 20190810133919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "matches", force: :cascade do |t|
-    t.integer "creator_first"
-    t.integer "creator_second"
-    t.integer "score_card_from_first"
-    t.integer "score_card_from_second"
-    t.boolean "will_exchange_info_first"
-    t.boolean "will_exchange_info_second"
+    t.bigint "project_id"
+    t.bigint "user_id"
+    t.bigint "score_card_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_matches_on_project_id"
+    t.index ["score_card_id"], name: "index_matches_on_score_card_id"
+    t.index ["user_id"], name: "index_matches_on_user_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -69,6 +69,9 @@ ActiveRecord::Schema.define(version: 20190512174534) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "matches", "projects"
+  add_foreign_key "matches", "score_cards"
+  add_foreign_key "matches", "users"
   add_foreign_key "projects", "users"
   add_foreign_key "score_cards", "projects"
   add_foreign_key "score_cards", "users"
