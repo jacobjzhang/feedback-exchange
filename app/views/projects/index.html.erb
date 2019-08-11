@@ -3,23 +3,33 @@
 <%= link_to 'Add a Project +', new_project_path, class: "btn btn-warning btn-lg shadow my-3" %>
 <% @projects.each do |project| %>
   <div class="row mt-2 mb-4">
+    <%= render 'shared/left_photo_link', project: project, reviewed: false %>
     <div class="col-lg-6 col-sm-12">
-      <img src="<%= "//image.thum.io/get/auth/5172-feedbackexchange/crop/1000/#{project.url}" %>" class="img-fluid shadow rounded" />
-    </div>
-    <div class="col-lg-6 col-sm-12">
-      <p>
-        <h4>Name</h4>
+      <h4>Name</h4>
+      <p>        
         <%= project.name %>
       </p>
-      <p>
-        <h4>URL</h4>
+      <h4>URL</h4>
+      <p>        
         <%= link_to project.url, project.url, target: '_blank' %>
       </p>
-      <p>
-        <h4>Description</h4>
+      <h4>Description</h4>
+      <p>        
         <%= project.description %>
       </p>
-      <p><a class="btn btn-warning shadow" href="<%= edit_project_path(project) %>" role="button info">Edit project &raquo;</a></p>      
+      <p><a class="btn btn-warning shadow" href="<%= edit_project_path(project) %>" role="button info">Edit project &raquo;</a></p>
+      <h4>Scorecards</h4>
+      <div class="row">
+        <% project.score_cards.in_groups_of(5) do |group| %>
+          <div class="col-6 mb-4">
+            <% group.each do |sc| %>
+              <% if sc %>
+                <%= link_to sc.user.email, project_score_card_path(project, sc) %> - <%= sc.created_at.strftime("%m/%d/%y") %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 <% end %>

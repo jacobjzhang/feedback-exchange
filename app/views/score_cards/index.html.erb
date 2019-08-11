@@ -1,48 +1,36 @@
-<p id="notice"><%= notice %></p>
-<h1>Score Cards</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Idea rating</th>
-      <th>Idea</th>
-      <th>Design rating</th>
-      <th>Design</th>
-      <th>Experience rating</th>
-      <th>Experience</th>
-      <th>Usability rating</th>
-      <th>Usability</th>
-      <th>Monetization rating</th>
-      <th>Monetization</th>
-      <th>Suggestions</th>
-      <th>Submitted at</th>
-      <th>User</th>
-      <th>Project</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @score_cards.each do |score_card| %>
-      <tr>
-        <td><%= score_card.idea_rating %></td>
-        <td><%= score_card.idea %></td>
-        <td><%= score_card.desig_rating %></td>
-        <td><%= score_card.design %></td>
-        <td><%= score_card.experience_rating %></td>
-        <td><%= score_card.experience %></td>
-        <td><%= score_card.usability_rating %></td>
-        <td><%= score_card.usability %></td>
-        <td><%= score_card.monetization_rating %></td>
-        <td><%= score_card.monetization %></td>
-        <td><%= score_card.suggestions %></td>
-        <td><%= score_card.submitted_at %></td>
-        <td><%= score_card.user %></td>
-        <td><%= score_card.project %></td>
-        <td><%= link_to 'Show', score_card %></td>
-        <td><%= link_to 'Edit', edit_score_card_path(score_card) %></td>
-        <td><%= link_to 'Destroy', score_card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
-<%= link_to 'New Score Card', new_score_card_path %>
+<h1 class="headline-title display-4 font-weight-bold">Submitted Scorecards</h1>
+<%= link_to 'See new matches', matches_path, class: "btn btn-warning btn-lg shadow my-3" %>
+<% @score_cards.each do |sc| %>
+  <div class="row mt-2 mb-4">
+    <%= render 'shared/left_photo_link', project: sc.project, reviewed: true %>
+    <div class="col-lg-6 col-sm-12">
+      <div class="mb-4">
+        <strong>Concept and Product-Market Fit</strong>
+        <input id="score_card_idea_rating" class="form-control kv-ltr-theme-fas-star rating-loading" value="<%= sc.idea_rating %>" />
+        <p><%= sc.idea %></p>
+      </div>
+      <div class="mb-4">
+        <strong>Site Design and Clarity</strong>
+        <input id="score_card_design_rating" class="form-control kv-ltr-theme-fas-star rating-loading" value="<%= sc.design_rating %>" />
+        <p><%= sc.design %></p>
+      </div>
+      <div class="mb-4">
+        <strong>Overall User Experience</strong>
+        <input id="score_card_experience_rating" class="form-control kv-ltr-theme-fas-star rating-loading" value="<%= sc.experience_rating %>" />
+        <p><%= sc.experience %></p>
+      </div>
+      <div class="mb-4">
+        <strong>Monetization and Potential For</strong>
+        <input id="score_card_monetization_rating" class="form-control kv-ltr-theme-fas-star rating-loading" value="<%= sc.monetization_rating %>" />
+        <p><%= sc.monetization %></p>
+      </div>
+      <div class="mb-4">
+        <strong>Suggestions</strong>
+        <p><%= sc.suggestions %></p>
+      </div>
+      <div class="mb-4">
+        <strong>Submitted on <%= sc.created_at.strftime("%B %d, %Y") %> by <%= sc.user.email %></strong>
+      </div>      
+    </div>
+  </div>
+<% end %>

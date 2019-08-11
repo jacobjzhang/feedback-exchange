@@ -1,12 +1,18 @@
 <div class="col-lg-6 col-sm-12">
-  <div class="w-100 shadow rounded thumb-mid"
-  style="background: linear-gradient(
-    rgba(0, 0, 0, 0.4),
-    rgba(0, 0, 0, 0.4)
-  ), url(<%= "//image.thum.io/get/auth/5172-feedbackexchange/crop/1000/#{project.url}" %>); background-size: cover;">
-    <img src="<%= "//image.thum.io/get/auth/5172-feedbackexchange/crop/1000/#{project.url}" %>" style="visibility: hidden;" class="img-fluid" />
-    <a href="<%= project.url %>" target="_blank" class="link-full-div">      
-      <h2>CLICK TO VISIT</h2>
+  <% if reviewed %>
+    <div class="w-100 shadow rounded thumb-mid"
+    style="background: linear-gradient(
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.4)
+    ), url(<%= "//image.thum.io/get/auth/5172-feedbackexchange/crop/1000/#{project.url}" %>); background-size: cover;">
+      <img src="<%= "//image.thum.io/get/auth/5172-feedbackexchange/crop/1000/#{project.url}" %>" style="visibility: hidden;" class="img-fluid" />
+      <a href="<%= project.url %>" target="_blank" class="link-full-div">
+        <h2>Done | Visit</h2>
+      </a>
+    </div>
+  <% else %>
+    <a href="<%= project.url %>" target="_blank" class="link-full-div">
+      <img src="<%= "//image.thum.io/get/auth/5172-feedbackexchange/crop/1000/#{project.url}" %>" class="img-fluid shadow rounded" />
     </a>
-  </div>
+  <% end %>
 </div>

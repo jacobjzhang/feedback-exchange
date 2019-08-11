@@ -409,33 +409,39 @@ Header intro
 	background-position: center;
 }
 
-.link-full-div {
-	width: 100%;
-	height: 100%;
-	display: block;
-}
-
 .thumb-mid {
 	min-height: 300px;
 	cursor: pointer;
+	width: 100%;
+	display: block;
+	position: relative;
 
-	h2 {
-		font-family: 'Roboto', sans-serif;
-		font-weight: 300;
-		color: white;
-		text-transform: uppercase;
-		margin: 0;
+	.link-full-div {
+		width: 100%;
+		height: 100%;
+		display: block;
 		position: absolute;
-		top: 50%;
-		left: 50%;
-		font-size: 2rem;
-		transform: translate(-50%, -50%);
-	}
+		top: 0;
+		left: 0;
 
-	&:hover {
 		h2 {
-			font-weight: 900;
-			font-size: 2.05rem;
+			font-family: 'Roboto', sans-serif;
+			font-weight: 300;
+			color: white;
+			text-transform: uppercase;
+			margin: 0;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			font-size: 2rem;
+			transform: translate(-50%, -50%);
+		}
+
+		&:hover {
+			h2 {
+				font-weight: 900;
+				font-size: 2.05rem;
+			}
 		}
 	}
 }

@@ -1,7 +1,5 @@
 <div class="row mt-2 mb-4">
-  <div class="col-lg-6 col-sm-12">
-    <img src="<%= "//image.thum.io/get/auth/5172-feedbackexchange/crop/1000/#{@project.url}" %>" class="img-fluid shadow rounded" />
-  </div>
+  <%= render 'shared/left_photo_link', project: @project, reviewed: false %>
   <div class="col-lg-6 col-sm-12">
     <p>
       <h4>Name</h4>

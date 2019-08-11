@@ -1,7 +1,7 @@
 class ScoreCardsController < ApplicationController
   before_action :set_project
   before_action :set_score_card, only: [:show, :edit, :update, :destroy]  
-  before_action :authenticate_user!  
+  before_action :authenticate_user!
 
   # GET /score_cards
   # GET /score_cards.json
@@ -33,6 +33,11 @@ class ScoreCardsController < ApplicationController
   def show
   end
 
+  def show_previous
+    @score_cards = ScoreCard.where(user: current_user).where.not(submitted_at: nil)
+    render :index
+  end
+
   # GET /score_cards/new
   def new
     @score_card = ScoreCard.new
@@ -45,11 +50,14 @@ class ScoreCardsController < ApplicationController
   # POST /score_cards
   # POST /score_cards.json
   def create
-    @score_card = ScoreCard.new(score_card_params.merge(user: current_user, project: @project))
+    @score_card = ScoreCard.new(score_card_params.merge(user: current_user, project: @project, submitted_at: Time.zone.now))
 
     respond_to do |format|
       if @score_card.save
-        format.html { redirect_to project_score_card_path(@project, @score_card), notice: 'Score card was successfully created.' }
+        # record the match as complete
+        @score_card.complete_match!
+
+        format.html { redirect_to project_score_card_path(@project, @score_card), notice: 'Scorecard was successfully created.' }
         format.json { render :show, status: :created, location: @score_card }
       else
         format.html { render :new }
@@ -63,7 +71,7 @@ class ScoreCardsController < ApplicationController
   def update
     respond_to do |format|
       if @score_card.update(score_card_params)
-        format.html { redirect_to @score_card, notice: 'Score card was successfully updated.' }
+        format.html { redirect_to @score_card, notice: 'Scorecard was successfully updated.' }
         format.json { render :show, status: :ok, location: @score_card }
       else
         format.html { render :edit }
@@ -77,7 +85,7 @@ class ScoreCardsController < ApplicationController
   def destroy
     @score_card.destroy
     respond_to do |format|
-      format.html { redirect_to score_cards_url, notice: 'Score card was successfully destroyed.' }
+      format.html { redirect_to score_cards_url, notice: 'Scorecard was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

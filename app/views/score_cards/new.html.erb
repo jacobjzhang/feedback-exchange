@@ -1,7 +1,7 @@
-<h1 class="headline-title display-4 font-weight-bold">New Score Card</h1>
+<h1 class="headline-title display-4 font-weight-bold">New Scorecard</h1>
 
 <div class="row">
-  <%= render 'shared/left_photo_link', project: @project %>
+  <%= render 'shared/left_photo_link', project: @project, reviewed: false %>
   <div class="col-lg-6 col-sm-12">
     <%= render 'form', score_card: @score_card %>
   </div>
