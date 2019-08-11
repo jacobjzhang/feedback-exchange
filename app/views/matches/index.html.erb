@@ -1,18 +1,8 @@
-<p id="notice"><%= notice %></p>
-
 <h1 class="headline-title display-4 font-weight-bold">To Review</h1>
 
 <% @matches.each do |match| %>
   <div class="row mt-2 mb-4">
-    <div class="col-lg-6 col-sm-12 thumb-mid shadow"
-      style="background: linear-gradient(
-        rgba(0, 0, 0, 0.2),
-        rgba(0, 0, 0, 0.2)
-      ), url(<%= "//image.thum.io/get/auth/5172-feedbackexchange/crop/1000/#{match.project.url}" %>); background-size: cover;">
-      <a href="<%= match.project.url %>" target="_blank" class="link-full-div">      
-        <h2>CLICK TO VISIT</h2>
-      </a>
-    </div>
+    <%= render 'shared/left_photo_link', project: match.project %>
     <div class="col-lg-6 col-sm-12">
       <p>
         <h4>Name</h4>

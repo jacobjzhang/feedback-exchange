@@ -26,6 +26,7 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     handle_categories
+    add_http_if_necessary
 
     @project = Project.new(project_params.merge(user: current_user))
 
@@ -44,6 +45,8 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1.json
   def update
     handle_categories
+    add_http_if_necessary
+
     respond_to do |format|
       if @project.update(project_params)
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
@@ -71,6 +74,13 @@ class ProjectsController < ApplicationController
         categories = params[:project]['categories'].compact
         params[:project]['category_list'] = categories.join(', ')
         params[:project].delete('categories')
+      end
+    end
+
+    def add_http_if_necessary
+      params_url = params[:project]["url"]
+      unless params_url[/\Ahttp:\/\//] || params_url[/\Ahttps:\/\//]
+        params[:project]["url"] = "http://#{params_url}"
       end
     end
 

@@ -28,8 +28,8 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :sites_to_review %>
-    <%= f.collection_select :interests, Category.all, :name, :label, { selected: resource.interest_list }, { multiple: true, class: "multi-select w-100" } %>
+    <%= f.label :sites_to_critique %>
+    <%= f.collection_select :interests, Category.all, :name, :label, { selected: resource.interest_list, prompt: true }, { multiple: true, class: "multi-select w-100", placeholder: 'Choose the kinds of sites you\'re into.' } %>
   </div>  
 
   <div class="form-group">

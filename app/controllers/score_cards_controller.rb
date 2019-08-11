@@ -1,6 +1,7 @@
 class ScoreCardsController < ApplicationController
   before_action :set_project
   before_action :set_score_card, only: [:show, :edit, :update, :destroy]  
+  before_action :authenticate_user!  
 
   # GET /score_cards
   # GET /score_cards.json

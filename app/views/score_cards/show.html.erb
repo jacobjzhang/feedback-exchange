@@ -1,61 +1,31 @@
-<h1 class="headline-title display-4 font-weight-bold">New Score Card</h1>
-<p id="notice"><%= notice %></p>
+<h1 class="headline-title display-4 font-weight-bold"><%= @project.name %></h1>
 
 <div class="row">
-  <div class="col-lg-6 col-sm-12 thumb-mid shadow rounded"
-    style="background: linear-gradient(
-      rgba(0, 0, 0, 0.4),
-      rgba(0, 0, 0, 0.4)
-    ), url(<%= "//image.thum.io/get/auth/5172-feedbackexchange/crop/1000/#{@project.url}" %>); background-size: cover;">
-    <a href="<%= @project.url %>" target="_blank" class="link-full-div">      
-      <h2>CLICK TO VISIT</h2>
-    </a>
-  </div>
+  <%= render 'shared/left_photo_link' %>
   <div class="col-lg-6 col-sm-12">
-    <p>
+    <div class="mb-4">
       <strong>Concept and Product-Market Fit</strong>
       <p><%= @score_card.idea_rating %></p>
       <p><%= @score_card.idea %></p>
-    </p>
-    <p>
-      <strong>Design rating:</strong>
-      <%= @score_card.design_rating %>
-    </p>
-    <p>
-      <strong>Design:</strong>
-      <%= @score_card.design %>
-    </p>
-    <p>
-      <strong>Experience rating:</strong>
-      <%= @score_card.experience_rating %>
-    </p>
-    <p>
-      <strong>Experience:</strong>
-      <%= @score_card.experience %>
-    </p>
-    <p>
-      <strong>Usability rating:</strong>
-      <%= @score_card.usability_rating %>
-    </p>
-    <p>
-      <strong>Usability:</strong>
-      <%= @score_card.usability %>
-    </p>
-    <p>
-      <strong>Monetization rating:</strong>
-      <%= @score_card.monetization_rating %>
-    </p>
-    <p>
-      <strong>Monetization:</strong>
-      <%= @score_card.monetization %>
-    </p>
-    <p>
+    </div>
+    <div class="mb-4">
+      <strong>Site Design and Clarity</strong>
+      <p><%= @score_card.design_rating %></p>
+      <p><%= @score_card.design %></p>
+    </div>
+    <div class="mb-4">
+      <strong>Overall User Experience</strong>
+      <p><%= @score_card.experience_rating %></p>
+      <p><%= @score_card.experience %></p>
+    </div>
+    <div class="mb-4">
+      <strong>Monetization and Potential For</strong>
+      <p><%= @score_card.monetization_rating %></p>
+      <p><%= @score_card.monetization %></p>
+    </div>
+    <div class="mb-4">
       <strong>Suggestions:</strong>
-      <%= @score_card.suggestions %>
-    </p>
-    <p>
-      <strong>Submitted at:</strong>
-      <%= @score_card.submitted_at %>
-    </p>
-    <%= link_to 'Edit', edit_project_score_card_path(@project, @score_card) %>
+      <p><%= @score_card.suggestions %></p>
+    </div>
+  </div>
 </div>
