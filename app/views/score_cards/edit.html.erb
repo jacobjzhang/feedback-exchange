@@ -1,6 +1,8 @@
-<h1>Editing Scorecard</h1>
+<h1 class="headline-title display-4 font-weight-bold">Edit Scorecard</h1>
 
-<%= render 'form', score_card: @score_card %>
-
-<%= link_to 'Show', @score_card %> |
-<%= link_to 'Back', score_cards_path %>
+<div class="row">
+  <%= render 'shared/left_photo_link', project: @project, reviewed: false %>
+  <div class="col-lg-6 col-sm-12">
+    <%= render 'form', score_card: @score_card %>
+  </div>
+</div>

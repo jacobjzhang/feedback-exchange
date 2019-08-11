@@ -18,7 +18,8 @@
     <%= form.text_field :url, id: :project_url, class: 'form-control' %>
   </div>
   <div class="form-group">
-    <%= form.label :description %>
+    <%= form.label :description_and_desired_feedback %>
+    <p><small><em>Indicate what your website is about, and what features or areas you'd like feedback for.</em></small></p>
     <%= form.text_area :description, id: :project_description, class: 'form-control', input_html: { rows: 5 } %>
   </div>
   <div class="form-group">

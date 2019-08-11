@@ -77,7 +77,7 @@
                   clearButton: '<i class="fa fa-minus-circle"></i>'
               };
           })(window.jQuery);
-        $(".kv-ltr-theme-fas-star.rating-loading").rating({ theme: 'krajee-fas', displayOnly: "<%= false unless action_name == 'show' %>" });
+        $(".kv-ltr-theme-fas-star.rating-loading").rating({ theme: 'krajee-fas', displayOnly: <%= action_name == 'show' %> });
         })
       </script>
     <% end %>

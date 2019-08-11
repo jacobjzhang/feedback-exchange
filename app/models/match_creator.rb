@@ -11,6 +11,16 @@ class MatchCreator < ApplicationRecord
     end
   end
 
+  def self.create_match(user)
+    interest_list = user.interest_list
+    interest_list.each do |interest|
+      # find_and_match_project returns true if a match was made
+      made_match = find_and_match_project(user, interest)
+      # move onto the next user if there's a match
+      break if made_match
+    end
+  end
+
   def self.find_and_match_project(user, interest)
     # more efficient project lookups
     if memo[interest]

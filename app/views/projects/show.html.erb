@@ -1,18 +1,1 @@
-<div class="row mt-2 mb-4">
-  <%= render 'shared/left_photo_link', project: @project, reviewed: false %>
-  <div class="col-lg-6 col-sm-12">
-    <p>
-      <h4>Name</h4>
-      <%= @project.name %>
-    </p>
-    <p>
-      <h4>URL</h4>
-      <%= link_to @project.url, @project.url, target: '_blank' %>
-    </p>
-    <p>
-      <h4>Description</h4>
-      <%= @project.description %>
-    </p>
-    <p><a class="btn btn-warning shadow" href="<%= edit_project_path(@project) %>" role="button info">Edit project &raquo;</a></p>      
-  </div>
-</div>
+<%= render 'projects/show', project: @project %>

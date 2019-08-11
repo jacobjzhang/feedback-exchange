@@ -3,6 +3,7 @@
 class UsersRegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  after_action :find_first_match, only: [:create, :update]  
 
   # GET /resource/sign_up
   def new
@@ -65,6 +66,10 @@ class UsersRegistrationsController < Devise::RegistrationsController
     # super(resource)
     '/projects'
   end
+
+  def find_first_match
+    MatchCreator.create_match(current_user)
+  end  
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)

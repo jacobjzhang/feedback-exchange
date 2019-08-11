@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :matches, :edit, :update, :destroy]
   before_action :authenticate_user!
+  after_action :find_first_match, only: [:create]
 
   # GET /projects
   # GET /projects.json
@@ -82,6 +83,10 @@ class ProjectsController < ApplicationController
       unless params_url[/\Ahttp:\/\//] || params_url[/\Ahttps:\/\//]
         params[:project]["url"] = "http://#{params_url}"
       end
+    end
+
+    def find_first_match
+      MatchCreator.create_match(current_user)
     end
 
     # Use callbacks to share common setup or constraints between actions.

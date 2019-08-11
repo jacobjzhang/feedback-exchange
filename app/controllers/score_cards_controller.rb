@@ -71,7 +71,7 @@ class ScoreCardsController < ApplicationController
   def update
     respond_to do |format|
       if @score_card.update(score_card_params)
-        format.html { redirect_to @score_card, notice: 'Scorecard was successfully updated.' }
+        format.html { redirect_to project_score_card_path(@project, @score_card), notice: 'Scorecard was successfully updated.' }
         format.json { render :show, status: :ok, location: @score_card }
       else
         format.html { render :edit }
