@@ -24,7 +24,8 @@
 
   <div class="form-group">
     <%= f.label :sites_to_review %>
-    <%= f.collection_select :interests, Category.all, :name, :label, { }, { multiple: true, class: "multi-select w-100" } %>
+    <p><small><em>Indicate the kind of websites and projects you'd be a targeted user for.</em></small></p>
+    <%= f.collection_select :interests, Category.all, :name, :label, { }, { multiple: true, class: "multi-select w-100", placeholder: "Select a few categories" } %>
   </div>
 
   <div class="form-group">

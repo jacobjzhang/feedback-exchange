@@ -1,6 +1,10 @@
 <h1 class="headline-title display-4 font-weight-bold">Editing Project</h1>
 
-<%= render 'form', project: @project %>
+<div class="row mt-2 mb-4">
+  <%= render 'shared/left_photo_link', project: @project, reviewed: false %>
+  <div class="col-lg-6 col-sm-12">
+    <%= render 'form', project: @project %>
+  </div>
+</div>
 
-<%= link_to 'Show', @project %> |
 <%= link_to 'Back', projects_path %>
