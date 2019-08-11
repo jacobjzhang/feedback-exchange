@@ -39,12 +39,7 @@
   <body>
     <%= render 'shared/nav' %>
     <main role="main">
-      <% if notice %>
-        <p class="alert alert-success"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert alert-danger"><%= alert %></p>
-      <% end %>
+      <%= render 'shared/notices' %>
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron text-white">
         <div class="container">

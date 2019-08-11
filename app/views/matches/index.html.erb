@@ -1,19 +1,19 @@
 <h1 class="headline-title display-4 font-weight-bold">To Review</h1>
-
+<%= link_to 'See previous score cards', new_project_path, class: "btn btn-warning btn-lg shadow my-3" %>
 <% @matches.each do |match| %>
   <div class="row mt-2 mb-4">
     <%= render 'shared/left_photo_link', project: match.project %>
     <div class="col-lg-6 col-sm-12">
-      <p>
-        <h4>Name</h4>
+      <h4>Name</h4>
+      <p>        
         <%= match.project.name %>
       </p>
-      <p>
-        <h4>URL</h4>
+      <h4>URL</h4>
+      <p>        
         <%= link_to match.project.url, match.project.url, target: '_blank' %>
       </p>
-      <p>
-        <h4>Description</h4>
+      <h4>Description</h4>
+      <p>        
         <%= match.project.description %>
       </p>
       <p><a class="btn btn-warning btn-lg shadow" href="<%= new_project_score_card_path(match.project) %>" role="button info">Fill out scorecard &raquo;</a></p>      
