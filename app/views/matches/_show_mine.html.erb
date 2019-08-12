@@ -1,0 +1,27 @@
+<div class="match row mt-2 mb-4">
+  <%= render 'shared/left_photo_link', project: @match.project, reviewed: false %>
+  <div class="col-lg-6 col-sm-12">
+    <h4>Name</h4>
+    <p>        
+      <%= @match.project.name %>
+    </p>
+    <h4>URL</h4>
+    <p>
+      <%= link_to @match.project.url, @match.project.url, target: '_blank' %>
+    </p>
+    <h4>Description</h4>
+    <p>
+      <%= simple_format(@match.project.description) %>
+    </p>
+    <p><a class="btn btn-warning btn-lg shadow" href="<%= new_project_score_card_path(@match.project) %>" role="button info">Fill out scorecard &raquo;</a></p>      
+  </div>
+  <% if @total_pages - @curr_page == 1 %>
+    <div class="container my-4">
+      <p>No more matches for now. Check back shortly for more sites to review.</p>
+    </div>
+  <% else %>
+    <p class="pagination d-none">
+      <a class="pagination__next" href="/matches/show_mine/<%= @curr_page + 1 %>">Next page</a>
+    </p>
+  <% end %>
+</div>

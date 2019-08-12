@@ -2,7 +2,7 @@
    <%= render 'shared/left_photo_link', project: project, reviewed: false %>
    <div class="col-lg-6 col-sm-12">
       <h4>Name</h4>
-      <p>        
+      <p>
          <%= project.name %>
       </p>
       <h4>URL</h4>
@@ -11,7 +11,7 @@
       </p>
       <h4>Description</h4>
       <p>        
-         <%= project.description %>
+         <%= simple_format(project.description) %>
       </p>
       <p><a class="btn btn-warning shadow" href="<%= edit_project_path(project) %>" role="button info">Edit project &raquo;</a></p>
       <h4>Scorecards</h4>

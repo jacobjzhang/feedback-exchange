@@ -1,6 +1,6 @@
 <div class="w-100">
   <% if notice %>
-    <p class="alert alert-success border-0 shadow"><%= notice %></p>
+    <p class="alert alert-success border-0 shadow"><%= notice.html_safe %></p>
   <% end %>
   <% if alert %>
     <p class="alert alert-danger border-0 shadow"><%= alert %></p>

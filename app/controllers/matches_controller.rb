@@ -5,12 +5,25 @@ class MatchesController < ApplicationController
   # GET /matches
   # GET /matches.json
   def index
-    @matches = Match.where(user: current_user).where(status: 'pending')
+    @match = my_matches.first
   end
 
   # GET /matches/1
   # GET /matches/1.json
   def show
+  end
+
+  def show_mine
+    matches = my_matches.to_a
+    @curr_page = params[:page].to_i
+    @total_pages = matches.count
+
+    if @curr_page >= @total_pages
+      head :ok, content_type: "text/html"
+    else
+      @match = matches[@curr_page]
+      render partial: 'matches/show_mine', layout: false
+    end
   end
 
   # GET /matches/new
@@ -68,6 +81,10 @@ class MatchesController < ApplicationController
   end
 
   private
+    def my_matches
+      @my_matches ||= Match.where(user: current_user).where(status: 'pending')
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_match
       @match = Match.find(params[:id])

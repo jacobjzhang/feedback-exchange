@@ -1,7 +1,8 @@
 class ScoreCardsController < ApplicationController
   before_action :set_project
-  before_action :set_score_card, only: [:show, :edit, :update, :destroy]  
+  before_action :set_score_card, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  after_action :fan_out_project, only: [:create]
 
   # GET /score_cards
   # GET /score_cards.json
@@ -57,7 +58,7 @@ class ScoreCardsController < ApplicationController
         # record the match as complete
         @score_card.complete_match!
 
-        format.html { redirect_to project_score_card_path(@project, @score_card), notice: 'Scorecard was successfully created.' }
+        format.html { redirect_to project_score_card_path(@project, @score_card), notice: 'Scorecard was successfully created.<br \>We are now showing your projects to be seen by other users, and will notify you via email and an on-page alert when you receive a new scorecard.<br \>In the meantime, why don\'t you <a href="/review">check out some more sites</a>?' }
         format.json { render :show, status: :created, location: @score_card }
       else
         format.html { render :new }
@@ -91,6 +92,10 @@ class ScoreCardsController < ApplicationController
   end
 
   private
+    def fan_out_project
+      MatchCreator.fan_out_project!(current_user)
+    end
+
     def set_project
       if params[:project_id]
         @project = Project.find(params[:project_id])
