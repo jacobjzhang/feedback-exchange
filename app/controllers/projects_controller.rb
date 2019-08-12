@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :matches, :edit, :update, :destroy]
   before_action :authenticate_user!
   after_action :find_first_match, only: [:create]
+  before_action :require_permission, only: [:edit, :update, :delete]
 
   # GET /projects
   # GET /projects.json
@@ -33,7 +34,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.<br \>Your website will be shown to other users once you have feedback credits. <strong><a href="/review">Get some by submitting a scorecard here</a></strong>.' }
+        format.html { redirect_to @project, notice: 'Project was successfully created.<br \>Your website will be shown to other users once you have feedback credits. <strong><u><a href="/review">Get some by submitting a scorecard here</a></u></strong>.' }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }
@@ -97,5 +98,11 @@ class ProjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:name, :url, :description, :user_id, :category_list, categories: [])
+    end
+
+    def require_permission
+      if current_user != Project.find(params[:id]).user
+        redirect_to project_path, alert: "You don't have access to change this project."
+      end
     end
 end

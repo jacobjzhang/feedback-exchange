@@ -12,13 +12,16 @@
           </p>
           <h4>URL</h4>
           <p>
-            <%= link_to match.project.url, match.project.url, target: '_blank' %>
+            <a href="<%= match.project.url %> target=_blank"><%= match.project.url %> <i class="fa fa-external-link"></i></a>
           </p>
           <h4>Description</h4>
           <p>
             <%= simple_format(match.project.description) %>
           </p>
-          <p><a class="btn btn-warning btn-lg shadow" href="<%= new_project_score_card_path(match.project) %>" role="button info">Fill out scorecard &raquo;</a></p>      
+          <p>
+            <a class="btn btn-warning btn-lg shadow" href="<%= match.project.url %>" role="button info" target="_blank">Visit site &raquo;</a></p>          
+            <a class="btn btn-warning btn-lg shadow" href="<%= new_project_score_card_path(match.project) %>" role="button info">Fill out scorecard &raquo;</a>
+          </p>
         </div>
       </div>
       <% end %>

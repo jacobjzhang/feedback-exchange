@@ -1,4 +1,4 @@
-<a href="<%= project_path(@project) %>"><h1 class="headline-title display-4 font-weight-bold"><%= @project.name %></h1></a>
+<a href="<%= @project.url %>" target="_blank"><h1 class="headline-title display-4 font-weight-bold"><%= @project.name %>  <i class="fa fa-external-link"></i></a></h1></a>
 <%= link_to 'Back to new matches', matches_path, class: "btn btn-warning btn-lg shadow my-3" %>
 <%= link_to 'Edit scorecard', edit_project_score_card_path(@project, @score_card), class: "btn btn-warning btn-lg shadow my-3" %>
 <div class="row">

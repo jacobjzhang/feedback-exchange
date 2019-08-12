@@ -4,6 +4,8 @@
   <div class="row mt-2 mb-4">
     <%= render 'shared/left_photo_link', project: sc.project, reviewed: true %>
     <div class="col-lg-6 col-sm-12">
+      <h2><%= sc.project.name %></h2>
+      <%= link_to 'Edit scorecard', edit_project_score_card_path(sc.project, sc), class: "btn btn-warning btn-lg shadow my-3" %>    
       <div class="mb-4">
         <strong>Concept and Product-Market Fit</strong>
         <input id="score_card_idea_rating" class="form-control kv-ltr-theme-fas-star rating-loading" value="<%= sc.idea_rating %>" />
@@ -30,7 +32,7 @@
       </div>
       <div class="mb-4">
         <strong>Submitted on <%= sc.created_at.strftime("%B %d, %Y") %> by <%= sc.user.email %></strong>
-      </div>      
+      </div>
     </div>
   </div>
 <% end %>

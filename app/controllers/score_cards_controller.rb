@@ -3,6 +3,7 @@ class ScoreCardsController < ApplicationController
   before_action :set_score_card, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   after_action :fan_out_project, only: [:create]
+  before_action :require_permission, except: [:new, :create, :show_previous]
 
   # GET /score_cards
   # GET /score_cards.json
@@ -58,7 +59,7 @@ class ScoreCardsController < ApplicationController
         # record the match as complete
         @score_card.complete_match!
 
-        format.html { redirect_to project_score_card_path(@project, @score_card), notice: 'Scorecard was successfully created.<br \>We are now showing your projects to be seen by other users, and will notify you via email and an on-page alert when you receive a new scorecard.<br \>In the meantime, why don\'t you <a href="/review">check out some more sites</a>?' }
+        format.html { redirect_to project_score_card_path(@project, @score_card), notice: 'Scorecard was successfully created.<br \>We are now showing your projects to be seen by other users, and will notify you via email and an on-page alert when you receive a new scorecard.<br \>In the meantime, why don\'t you <strong><u><a href="/review">check out some more sites</a></u></strong>?' }
         format.json { render :show, status: :created, location: @score_card }
       else
         format.html { render :new }
@@ -110,5 +111,11 @@ class ScoreCardsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def score_card_params
       params.require(:score_card).permit(:idea_rating, :idea, :design_rating, :design, :experience_rating, :experience, :usability_rating, :usability, :monetization_rating, :monetization, :suggestions, :submitted_at, :user_id, :project_id)
+    end
+
+    def require_permission
+      if current_user != Project.find(params[:project_id]).user && current_user != ScoreCard.find(params[:id]).user
+        redirect_to project_path(@project), alert: "You don't have access to this private scorecard."
+      end
     end
 end

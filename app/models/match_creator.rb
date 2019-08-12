@@ -14,7 +14,7 @@ class MatchCreator < ApplicationRecord
 
   def self.fan_out_project!(user)
     user.projects.each do |project|
-      potential_users = User.tagged_with(project.category_list)
+      potential_users = User.tagged_with(project.category_list, any: true)
       potential_users.each do |user|
         match = Match.find_by(project: project, user: user)
         next if match
@@ -32,7 +32,7 @@ class MatchCreator < ApplicationRecord
     if memo[interest_list]
       potential_projects = memo[interest_list]
     else
-      potential_projects = Project.tagged_with(interest_list)
+      potential_projects = Project.tagged_with(interest_list, any: true)
       memo[interest_list] = potential_projects
     end
 

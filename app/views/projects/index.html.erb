@@ -5,7 +5,7 @@
     <%= render 'projects/show', project: project %>
   <% end %>
 <% else %>
-  <p>Welcome to FeedbackExchange!</p>
+  <h3>Welcome to FeedbackExchange!</h3>
   <p>Too many projects begin with an idea that isn't well researched. Founders and makers will spend weeks, months, and years working in silence without soliciting feedback. We think this is silly-- founders can eliminate uncertainty and build a strong usership just by showing off their work early and repeatedly.</p>
-  <p>To get started, <strong><%= link_to "add a project to begin getting feedback", new_project_path %></strong>.</p>
+  <p>To get started, <strong><u><%= link_to "add a project to begin getting feedback", new_project_path %></u></strong>.</p>
 <% end %>
