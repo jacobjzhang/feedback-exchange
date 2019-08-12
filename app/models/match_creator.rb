@@ -2,13 +2,18 @@ class MatchCreator < ApplicationRecord
   def self.create_matches
     User.includes(:taggings).where(status: 'idle').each do |user|
       create_match(user)
+
+      if user.matches.where(status: 'pending').count > 20
+        # we don't want the callback to kick this process off again
+        user.update_column('status', 'reviewing')
+      end
     end
   end
 
   def self.create_match(user)
     interest_list = user.interest_list
-    # find_and_match_project returns true if a match was made
-    made_match = find_and_match_project(user, interest_list)
+    # find_and_match_projects returns true if a match was made
+    find_and_match_projects(user, interest_list)
     # move onto the next user if there's a match
   end
 
@@ -27,7 +32,7 @@ class MatchCreator < ApplicationRecord
     end
   end
 
-  def self.find_and_match_project(user, interest_list)
+  def self.find_and_match_projects(user, interest_list)
     # more efficient project lookups
     if memo[interest_list]
       potential_projects = memo[interest_list]
@@ -39,25 +44,20 @@ class MatchCreator < ApplicationRecord
     projects_not_reviewed = Project.where("id NOT IN 
       ( 
              SELECT matches.project_id 
-             FROM   projects 
-             JOIN   matches 
+             FROM   projects
+             JOIN   matches
              ON     matches.project_id = projects.id 
-             WHERE  matches.user_id = 1) 
+             WHERE  matches.user_id = #{user.id})
       AND 
-      projects.user_id != 1")
+      projects.user_id != #{user.id}").limit(5)
 
     projects_not_reviewed.each do |project|
       match = Match.find_by(project: project, user: user)
 
       next if match
 
-      match = Match.new(project: project, user: user)
-      if match.save
-        return true
-      end
+      match = Match.create!(project: project, user: user)
     end
-
-    return false
   end
 
   def self.memo

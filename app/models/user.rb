@@ -8,5 +8,11 @@ class User < ApplicationRecord
   has_many :projects
   has_many :matches
 
+  after_commit :find_first_match, only: [:create, :update]
+
   def interests; end
+
+  def find_first_match
+    MatchCreator.create_match(self)
+  end
 end
