@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   resources :projects do
     resources :score_cards
   end
-  resources :matches, :path => "review"
-  get '/matches/show_mine/:page' => "matches#show_mine"
+  get '/review' => "matches#index"
+  get '/matches' => "matches#index"
+  get '/matches/page/:page' => "matches#paginate_mine"
   get '/score_cards/previous' => 'score_cards#show_previous'
 
   # get '/projects/:id/matches', to: 'projects#matches'

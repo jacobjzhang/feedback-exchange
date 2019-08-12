@@ -1,12 +1,11 @@
 <h1 class="headline-title display-4 font-weight-bold">My Projects</h1>
 <%= link_to 'Add a Project +', new_project_path, class: "btn btn-warning btn-lg shadow my-3" %>
 <% if @projects.count > 0 %>
-<% @projects.each do |project| %>
-  <%= render 'projects/show', project: project %>
-<% end %>
+  <% @projects.each do |project| %>
+    <%= render 'projects/show', project: project %>
+  <% end %>
 <% else %>
-<p>Welcome to FeedbackExchange!
-<p>
-<p>Too many projects begin with an idea that isn't well researched. Founders and makers will spend weeks, months, and years working in silence without soliciting feedback. We think this is silly-- founders can eliminate uncertainty and build a strong usership just by showing off their work early and repeatedly.</p>
-<p>To get started, <strong><%= link_to "add a project to begin getting feedback", new_project_path %></strong>.</p>
+  <p>Welcome to FeedbackExchange!</p>
+  <p>Too many projects begin with an idea that isn't well researched. Founders and makers will spend weeks, months, and years working in silence without soliciting feedback. We think this is silly-- founders can eliminate uncertainty and build a strong usership just by showing off their work early and repeatedly.</p>
+  <p>To get started, <strong><%= link_to "add a project to begin getting feedback", new_project_path %></strong>.</p>
 <% end %>

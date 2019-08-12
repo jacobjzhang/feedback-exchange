@@ -5,7 +5,7 @@ class MatchesController < ApplicationController
   # GET /matches
   # GET /matches.json
   def index
-    @match = my_matches.first
+    @matches = my_matches.paginate(page: 1)
   end
 
   # GET /matches/1
@@ -13,16 +13,17 @@ class MatchesController < ApplicationController
   def show
   end
 
-  def show_mine
-    matches = my_matches.to_a
-    @curr_page = params[:page].to_i
-    @total_pages = matches.count
+  def paginate_mine
+    # matches = my_matches.to_a
+    # @curr_page = params[:page].to_i
+    # @total_pages = matches.count
 
-    if @curr_page >= @total_pages
+    @matches = my_matches.paginate(page: params[:page])
+    if @matches.length == 0
       head :ok, content_type: "text/html"
     else
-      @match = matches[@curr_page]
-      render partial: 'matches/show_mine', layout: false
+      # @match = matches[@curr_page]
+      render 'index'
     end
   end
 

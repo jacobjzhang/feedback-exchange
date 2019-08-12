@@ -29,11 +29,17 @@
       };
     })(window.jQuery);
     $(".kv-ltr-theme-fas-star.rating-loading").rating({ theme: 'krajee-fas', displayOnly: false });
-    $('.match-container').infiniteScroll({
-      path: '.pagination__next',
-      append: '.match',
-      history: false,
-      checkLastPage: true
-    });
-  })
+
+    if (window.location.pathname.indexOf('review') > -1) {
+      $('.match-container').infiniteScroll({
+        path: '.pagination__next',
+        append: '.match',
+        history: false,
+        checkLastPage: true
+      });
+    }
+  });
 </script>
+<% if controller_name == 'matches' and action_name == 'index' %>
+  <meta name="turbolinks-cache-control" content="no-cache">  
+<% end %>
