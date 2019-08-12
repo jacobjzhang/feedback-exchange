@@ -67,6 +67,11 @@ class UsersRegistrationsController < Devise::RegistrationsController
     '/projects'
   end
 
+  def after_update_path_for(resource)
+    # user_path(resource)
+    '/projects'
+  end
+
   def find_first_match
     MatchCreator.create_match(resource)
   end

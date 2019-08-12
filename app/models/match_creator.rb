@@ -36,9 +36,17 @@ class MatchCreator < ApplicationRecord
       memo[interest_list] = potential_projects
     end
 
-    projects_by_others = potential_projects.where.not(user: user)
+    projects_not_reviewed = Project.where("id NOT IN 
+      ( 
+             SELECT matches.project_id 
+             FROM   projects 
+             JOIN   matches 
+             ON     matches.project_id = projects.id 
+             WHERE  matches.user_id = 1) 
+      AND 
+      projects.user_id != 1")
 
-    projects_by_others.each do |project|
+    projects_not_reviewed.each do |project|
       match = Match.find_by(project: project, user: user)
 
       next if match
