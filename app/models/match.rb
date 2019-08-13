@@ -3,7 +3,7 @@ class Match < ApplicationRecord
   belongs_to :user
   belongs_to :score_card, optional: true
 
-  self.per_page = 5
+  self.per_page = 3
 
   def complete!
     update!(status: 'complete')

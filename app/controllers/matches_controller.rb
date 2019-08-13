@@ -5,7 +5,8 @@ class MatchesController < ApplicationController
   # GET /matches
   # GET /matches.json
   def index
-    @matches = my_matches.paginate(page: 1)
+    # @matches = my_matches.paginate(page: 1)
+    @matches = my_matches
     score_card = ScoreCard.find(ScoreCard.where.not(user: current_user).pluck(:id).sample)
     unless (rand(2) == 1) || (current_user.voted_for? score_card)
       @score_card = score_card
