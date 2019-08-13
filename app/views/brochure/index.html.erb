@@ -1,14 +1,26 @@
-<div class="row">
+<h1 class="display-5 font-weight-bold">Amazingly simple.</h1>
+<div class="row mb-4">
   <div class="col-md-4">
-    <h2>1. Submit Your Project</h2>
+    <h3>1. Submit Your Project</h3>
     <p>Tell us a little bit about your startup or side hustle, and what you hope to achieve from it. This will help us match you up with the right person to provide you feedback.</p>
   </div>
   <div class="col-md-4">
-    <h2>2. Critique A Project</h2>
+    <h3>2. Critique A Project</h3>
     <p>We'll match you up with another startup founder looking for feedback. We ask that you spend a reasonable amount of time getting to know their project, and fill out a scorecard that'll help make them better.</p>
   </div>
   <div class="col-md-4">
-    <h2>3. Get Feedback</h2>
+    <h3>3. Get Feedback</h3>
     <p>In exchange for helping another startup, you'll get your own project reviewed with a scorecard. It'll list out ways you can improve, and suggestions for your project!</p>
   </div>
+</div>
+<h1 class="display-5 font-weight-bold">Discover cool projects.</h1>
+<div class="row mb-4">
+  <% @projects.each do |project| %>
+    <div class="col-md-4">
+      <h3 class="lead"><%= project.name %></h3>
+      <a href="<%= project.url %>" target="_blank" class="link-full-div">
+        <img src="<%= "//image.thum.io/get/auth/5172-feedbackexchange/crop/1000/#{project.url}" %>" class="img-fluid shadow rounded" />
+      </a>
+    </div>
+  <% end %>
 </div>
