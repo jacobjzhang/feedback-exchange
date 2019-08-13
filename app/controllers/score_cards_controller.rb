@@ -33,6 +33,7 @@ class ScoreCardsController < ApplicationController
   # GET /score_cards/1
   # GET /score_cards/1.json
   def show
+    @score_card.mark_as_read! for: current_user
   end
 
   def show_previous

@@ -20,9 +20,16 @@
           <% project.score_cards.in_groups_of(5) do |group| %>
           <div class="col-6 mb-4">
               <% group.each do |sc| %>
-              <% if sc %>
-              <%= link_to sc.user.email, project_score_card_path(project, sc) %> - <%= sc.created_at.strftime("%m/%d/%y") %>
-              <% end %>
+                <% if sc %>
+                  <% if @unread_scorecards.include?(sc) %>
+                    <strong>
+                      <%= link_to "#{sc.created_at.strftime("%m/%d/%y")} by #{sc.user.name}", project_score_card_path(project, sc) %>
+                    </strong>
+                  <% else %>
+                    <%= link_to "#{sc.created_at.strftime("%m/%d/%y")} by #{sc.user.name}", project_score_card_path(project, sc) %>
+                  <% end %>
+                  <br />
+                <% end %>
               <% end %>
           </div>
           <% end %>

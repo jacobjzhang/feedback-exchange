@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :store_user_location!, if: :storable_location?
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :check_unread_scorecards, if: :current_user
 
   def after_sign_in_path_for(resource_or_scope)
     # stored_location_for(resource_or_scope) || matches_path || super
@@ -26,5 +27,15 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :interest_list])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :interest_list])
+  end
+
+  def check_unread_scorecards
+    @unread_scorecards ||= current_user_scorecards.with_read_marks_for(current_user).select do |sc|
+      sc.unread?(current_user)
+    end
+  end
+
+  def current_user_scorecards
+    @current_user_scorecards ||= ScoreCard.joins(:project).where("projects.user_id = #{current_user.id}")
   end
 end
