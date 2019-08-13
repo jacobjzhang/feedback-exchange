@@ -20,12 +20,12 @@ class MatchCreator < ApplicationRecord
   def self.fan_out_project!(user)
     user.projects.each do |project|
       potential_users = User.tagged_with(project.category_list, any: true)
-      potential_users.each do |user|
-        next if user == current_user
-        match = Match.find_by(project: project, user: user)
+      potential_users.each do |potential_user|
+        next if user == potential_user
+        match = Match.find_by(project: project, user: potential_user)
         next if match
 
-        match = Match.new(project: project, user: user)
+        match = Match.new(project: project, user: potential_user)
         if match.save
           return true
         end
