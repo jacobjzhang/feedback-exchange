@@ -11,6 +11,21 @@
     }
   });
 </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-145632675-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-145632675-1');
+
+  document.addEventListener('turbolinks:load', event => {
+    if (typeof gtag === 'function') {
+      gtag('config', 'UA-145632675-1', {
+        'page_location': event.data.url
+      });
+    }
+  });
+</script>
 <script type="text/javascript" defer>
   $(document).on('turbolinks:load', function() {
     /*!
