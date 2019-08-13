@@ -21,6 +21,7 @@ class MatchCreator < ApplicationRecord
     user.projects.each do |project|
       potential_users = User.tagged_with(project.category_list, any: true)
       potential_users.each do |user|
+        next if user == current_user
         match = Match.find_by(project: project, user: user)
         next if match
 
