@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get '/matches' => "matches#index"
   get '/matches/page/:page' => "matches#paginate_mine"
   get '/score_cards/previous' => 'score_cards#show_previous'
+  get '/score_cards/:id/upvote' => 'score_cards#upvote'
+  get '/score_cards/:id/downvote' => 'score_cards#downvote'
 
   # get '/projects/:id/matches', to: 'projects#matches'
   # get '/projects/:project_id/new_match', to: 'matches#new'

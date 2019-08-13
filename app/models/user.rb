@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   acts_as_taggable_on :interests
   acts_as_reader
+  acts_as_voter
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

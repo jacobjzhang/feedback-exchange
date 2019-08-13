@@ -8,6 +8,7 @@ class ScoreCard < ApplicationRecord
   validate :written_text_must_be_140
 
   acts_as_readable on: :created_at
+  acts_as_votable
 
   def complete_match!
     match = Match.find_by(user: user, project: project)

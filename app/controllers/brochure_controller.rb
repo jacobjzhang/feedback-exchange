@@ -1,5 +1,6 @@
 class BrochureController < ApplicationController
   def index
-    @projects = Project.order("RANDOM()").limit(3)
+    # faster than randomizing whole table
+    @projects = Project.find(Project.pluck(:id).sample(3))
   end
 end

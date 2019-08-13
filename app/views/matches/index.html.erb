@@ -2,7 +2,7 @@
 <%= link_to 'See submitted scorecards', score_cards_previous_path, class: "btn btn-warning btn-lg shadow my-3" %>
 <% if @matches.count > 0 %>
   <div class="match-container">
-  <% @matches.each do |match| %>
+    <% @matches.each do |match| %>
       <div class="match row mt-2 mb-4">
         <%= render 'shared/left_photo_link', project: match.project, reviewed: false %>
         <div class="col-lg-6 col-sm-12">
@@ -24,8 +24,31 @@
           </p>
         </div>
       </div>
-      <% end %>
-    </div>
+    <% end %>
+    <% if @score_card %>
+      <div class="row mt-2 mb-4 bg-dark text-white py-4">
+        <div class="w-100 p-4">
+          <h3 class="display-5">Could you help improve the standards of our community?</h3>
+          <p class="lead">
+            Do you think the below is a helpful review?
+          </p>
+          <div class="row">
+            <div class="col-6">
+              <a class="btn btn-warning shadow rounded" href="/score_cards/<%= @score_card.id %>/upvote">
+                <i class="fa fa-thumbs-up"></i> Yes, this is useful feedback.
+              </a>
+            </div>
+            <div class="col-6">
+              <a class="btn btn-warning shadow rounded" href="/score_cards/<%= @score_card.id %>/downvote">
+                <i class="fa fa-thumbs-down"></i> No, this is not useful feedback.
+              </a>
+            </div>
+          </div>
+        </div>
+        <%= render 'score_cards/show', score_card: @score_card %>
+      </div>
+    <% end %>
+  </div>
   <p class="pagination d-none">
     <a class="pagination__next" href="/matches/page/2">Next page</a>
   </p>  

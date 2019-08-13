@@ -1,9 +1,9 @@
 class ScoreCardsController < ApplicationController
   before_action :set_project
-  before_action :set_score_card, only: [:show, :edit, :update, :destroy]
+  before_action :set_score_card, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
   before_action :authenticate_user!
   after_action :fan_out_project, only: [:create]
-  before_action :require_permission, except: [:new, :create, :show_previous]
+  before_action :require_permission, except: [:new, :create, :show_previous, :upvote, :downvote]
 
   # GET /score_cards
   # GET /score_cards.json
@@ -89,6 +89,22 @@ class ScoreCardsController < ApplicationController
     @score_card.destroy
     respond_to do |format|
       format.html { redirect_to score_cards_url, notice: 'Scorecard was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def upvote
+    @score_card.liked_by current_user
+    respond_to do |format|
+      format.html { redirect_to matches_path, notice: 'Thanks for upvoting this scorecard and improving our community!' }
+      format.json { head :no_content }
+    end
+  end
+
+  def downvote
+    @score_card.downvote_from current_user
+    respond_to do |format|
+      format.html { redirect_to matches_path, notice: 'Thanks for evaluating this scorecard and improving our community!' }
       format.json { head :no_content }
     end
   end

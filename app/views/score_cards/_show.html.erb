@@ -1,0 +1,30 @@
+<%= render 'shared/left_photo_link', project: score_card.project, reviewed: true %>
+<div class="col-lg-6 col-sm-12">
+  <div class="mb-4">
+    <strong>Concept and Product-Market Fit</strong>
+    <input id="score_card_idea_rating" class="form-control kv-ltr-theme-fas-star rating-loading" value="<%= score_card.idea_rating %>" />
+    <p><%= score_card.idea %></p>
+  </div>
+  <div class="mb-4">
+    <strong>Site Design and Clarity</strong>
+    <input id="score_card_design_rating" class="form-control kv-ltr-theme-fas-star rating-loading" value="<%= score_card.design_rating %>" />
+    <p><%= score_card.design %></p>
+  </div>
+  <div class="mb-4">
+    <strong>Overall User Experience</strong>
+    <input id="score_card_experience_rating" class="form-control kv-ltr-theme-fas-star rating-loading" value="<%= score_card.experience_rating %>" />
+    <p><%= score_card.experience %></p>
+  </div>
+  <div class="mb-4">
+    <strong>Monetization and Potential For</strong>
+    <input id="score_card_monetization_rating" class="form-control kv-ltr-theme-fas-star rating-loading" value="<%= score_card.monetization_rating %>" />
+    <p><%= score_card.monetization %></p>
+  </div>
+  <div class="mb-4">
+    <strong>Suggestions</strong>
+    <p><%= score_card.suggestions %></p>
+  </div>
+  <div class="mb-4">
+    <strong>Submitted on <%= score_card.created_at.strftime("%B %d, %Y") %> by <%= score_card.user.name %></strong>
+  </div>    
+</div>
