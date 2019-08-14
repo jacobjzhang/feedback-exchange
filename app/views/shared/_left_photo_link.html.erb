@@ -4,15 +4,15 @@
     style="background: linear-gradient(
       rgba(0, 0, 0, 0.4),
       rgba(0, 0, 0, 0.4)
-    ), url(<%= "//image.thum.io/get/auth/5172-feedbackexchange/crop/1000/#{project.url}" %>); background-size: cover;">
-      <img src="<%= "//image.thum.io/get/auth/5172-feedbackexchange/crop/1000/#{project.url}" %>" style="visibility: hidden;" class="img-fluid" />
+    ), url(<%= "//image.thum.io/get/crop/1000/#{project.url}" %>); background-size: cover;">
+      <img src="<%= "//image.thum.io/get/crop/1000/#{project.url}" %>" style="visibility: hidden;" class="img-fluid site-thumb" />
       <a href="<%= project.url %>" target="_blank" class="link-full-div">
         <h2>Done <i class="fa fa-check"></i></h2>
       </a>
     </div>
   <% else %>
     <a href="<%= project.url %>" target="_blank" class="link-full-div">
-      <img src="<%= "//image.thum.io/get/auth/5172-feedbackexchange/crop/1000/#{project.url}" %>" class="img-fluid shadow rounded" />
+      <img src="<%= "//image.thum.io/get/crop/1000/#{project.url}" %>" class="img-fluid shadow rounded site-thumb" />
     </a>
   <% end %>
 </div>
