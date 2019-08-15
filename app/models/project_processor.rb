@@ -26,9 +26,10 @@ class ProjectProcessor
     http = Net::HTTP.new(url.host, url.port)
 
     request = Net::HTTP::Get.new(url.request_uri)
-    request["User-Agent"] = "My Ruby Script"
+    request["User-Agent"] = "New User Agent"
     request["Accept"] = "*/*"
-    http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+    # http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
     response = Net::HTTP.start(url.host, url.port, 
       :use_ssl => url.scheme == 'https') { |http| http.request request }
