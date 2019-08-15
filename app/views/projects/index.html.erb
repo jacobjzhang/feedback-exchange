@@ -1,5 +1,6 @@
 <h1 class="headline-title display-4 font-weight-bold">My Projects</h1>
 <%= link_to 'Add a Project +', new_project_path, class: "btn btn-warning btn-lg shadow my-3" %>
+<%= link_to 'See submitted scorecards', score_cards_previous_path, class: "btn btn-secondary btn-lg shadow my-3" %>
 <% if @projects.count > 0 %>
   <% @projects.each do |project| %>
     <%= render 'projects/show', project: project %>

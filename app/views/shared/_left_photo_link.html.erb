@@ -7,7 +7,9 @@
     ), url(<%= "//image.thum.io/get/crop/1000/#{project.url}" %>); background-size: cover;">
       <img src="<%= "//image.thum.io/get/crop/1000/#{project.url}" %>" style="visibility: hidden;" class="img-fluid site-thumb" />
       <a href="<%= project.url %>" target="_blank" class="link-full-div">
-        <h2>Done <i class="fa fa-check"></i></h2>
+        <div class="site-thumb-center">
+          <h2>Done <i class="fa fa-check"></i></h2>
+        </div>
       </a>
     </div>
   <% else %>

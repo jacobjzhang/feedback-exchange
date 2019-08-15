@@ -424,30 +424,37 @@ Header intro
 		top: 0;
 		left: 0;
 
-		h2 {
-			font-family: 'Roboto', sans-serif;
-			font-weight: 300;
-			color: white;
-			text-transform: uppercase;
-			margin: 0;
+		.site-thumb-center {
 			position: absolute;
 			top: 50%;
 			left: 50%;
-			font-size: 2rem;
 			transform: translate(-50%, -50%);
+		}
+
+		h2,
+		p {
+			font-family: 'Roboto', sans-serif;
+			font-weight: 300;
+			color: white;
+			text-align: center;
+		}
+
+		h2 {
+			text-transform: uppercase;
+			margin: 0;
+			font-size: 2rem;
 		}
 
 		&:hover {
 			h2 {
 				font-weight: 900;
-				font-size: 2.05rem;
 			}
 		}
 	}
 }
 
 #site-iframe {
-	height: calc(100vh - 3.5em);
+	min-height: calc(100vh - 3.5em);
 }
 
 .matches-sidebar {

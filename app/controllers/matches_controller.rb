@@ -13,6 +13,31 @@ class MatchesController < ApplicationController
     end
   end
 
+  def review
+    match_len = my_matches.length
+    page_id_param = params[:page_id].to_i
+
+    if match_len == 0 || (page_id_param >= match_len - 1)
+      return redirect_to '/matches'
+    end
+
+    @score_card = ScoreCard.new
+
+    if params[:page_id]
+      @match = my_matches[page_id_param]
+      @next_page = page_id_param + 1
+    else
+      @match = my_matches.first
+      @next_page = 1
+    end
+
+    @project = @match.project
+
+    if params[:page_id].to_i >= (match_len - 1)
+      @hide_next = true
+    end
+  end
+
   # GET /matches/1
   # GET /matches/1.json
   def show

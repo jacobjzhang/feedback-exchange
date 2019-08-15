@@ -1,0 +1,46 @@
+<div class="match-container">
+   <div class="match row no-gutters mt-2 mb-0">
+      <div class="col-lg-9 col-sm-12 shadow rounded-lg">
+        <% if @match.project.can_frame %>
+          <iframe src="<%= @match.project.url %>" class="w-100 h-100 border-0 shadow rounded-lg" id="site-iframe"></iframe>
+        <% else %>
+          <div class="w-100 rounded thumb-mid"
+          style="background: linear-gradient(
+            rgba(0, 0, 0, 0.4),
+            rgba(0, 0, 0, 0.4)
+          ), url(<%= "//image.thum.io/get/crop/1200/#{@match.project.url}" %>); background-size: cover;">
+            <img src="<%= "//image.thum.io/get/crop/1200/#{@match.project.url}" %>" style="visibility: hidden;" class="img-fluid site-thumb" />
+            <a href="<%= @match.project.url %>" target="_blank" class="link-full-div">
+              <div class="site-thumb-center">
+                <h2>Visit <i class="fa fa-external-link"></i></h2>
+                <p class="lead">Sorry, we couldn't embed this site.<br />Please visit it externally instead.</p>
+              </div>
+            </a>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-lg-3 col-sm-12 p-0 matches-sidebar">
+        <div class="px-2">
+         <% unless @hide_next %>
+            <a class="w-100 btn btn-info btn shadow" id="next-site" href="/review/<%= @next_page %>" role="button info">Next site &raquo;</a>
+          <% else %>
+            <a class="w-100 btn btn-secondary btn shadow" id="last-site" href="#" role="button info">Get more sites &raquo;</a>
+        <% end %>
+        </div>
+        <div id="review-score-card" class="w-100 h-100 overflow-auto p-4 pb-5">
+          <h4>URL</h4>
+          <p>
+            <a href="<%= @match.project.url %>" target="_blank"><%= @match.project.url %> <i class="fa fa-external-link"></i></a>
+          </p>
+          <h4>Description</h4>
+          <p>
+              <%= simple_format(@match.project.description) %>
+          </p>
+          <div class="w-100" id="score_card_form">
+            <%= render 'score_cards/form', score_card: @score_card, project: @match.project %>
+          </div>
+          <div id="score_card_output" class="my-4"><p></p></div>
+        </div>
+      </div>
+   </div>
+</div>

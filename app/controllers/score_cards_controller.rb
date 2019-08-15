@@ -61,7 +61,7 @@ class ScoreCardsController < ApplicationController
         @score_card.complete_match!
 
         format.html { redirect_to project_score_card_path(@project, @score_card), notice: 'Scorecard was successfully created.<br \>We are now showing your projects to be seen by other users, and will notify you via email and an on-page alert when you receive a new scorecard.<br \>In the meantime, why don\'t you <strong><u><a href="/review">check out some more sites</a></u></strong>?' }
-        format.json { render :show, status: :created, location: @score_card }
+        format.json { render :show, status: :created, location: project_score_card_path(@project, @score_card) }
       else
         format.html { render :new }
         format.json { render json: @score_card.errors, status: :unprocessable_entity }
