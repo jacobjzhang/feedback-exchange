@@ -1,19 +1,6 @@
 <div class="row mt-2 mb-4">
    <%= render 'shared/left_photo_link', project: project, reviewed: false %>
    <div class="col-lg-6 col-sm-12">
-      <h4>Name</h4>
-      <p>
-         <%= project.name %>
-      </p>
-      <h4>URL</h4>
-      <p>
-          <a href="<%= project.url %> target=_blank"><%= project.url %> <i class="fa fa-external-link"></i></a>         
-      </p>
-      <h4>Description</h4>
-      <p>        
-         <%= simple_format(project.description) %>
-      </p>
-      <p><a class="btn btn-warning shadow rounded" href="<%= edit_project_path(project) %>" role="button info">Edit project &raquo;</a></p>
       <h4>Scorecards</h4>
       <% if project.score_cards.count > 0 %>
         <div class="row">
@@ -41,5 +28,18 @@
         <p>Your website will be shown to other users once you have feedback credits. <strong><u><%= link_to "Get some by submitting a scorecard here", matches_path %></u></strong>.</p>
         <p>No scorecards have been submitted yet for your site. Please check in later!</p>
       <% end %>
+      <h4>Name</h4>
+      <p>
+         <%= project.name %>
+      </p>
+      <h4>URL</h4>
+      <p>
+          <a href="<%= project.url %> target=_blank"><%= project.url %> <i class="fa fa-external-link"></i></a>         
+      </p>
+      <h4>Description</h4>
+      <p>        
+         <%= simple_format(project.description) %>
+      </p>
+      <p><a class="btn btn-warning shadow rounded" href="<%= edit_project_path(project) %>" role="button info">Edit project &raquo;</a></p>
    </div>
 </div>
