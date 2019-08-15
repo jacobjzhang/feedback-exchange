@@ -51,6 +51,8 @@
         )
       ) {
         $("body").css("overflow", "hidden");
+      } else {
+        $('#next-button-container').addClass('mt-2');        
       }
       $("#score_card_form form").on("submit", function(e) {
         e.preventDefault();
@@ -77,10 +79,12 @@
           $("#review-score-card").animate(
             { scrollTop: $("#review-score-card").prop("scrollHeight") },
             1000
-          );
-          if (!$("#last-site").length) {
-            window.location.replace($("#next-site").attr("href"));
-          }
+          ).focus();
+          setTimeout(function() {
+            if (!$("#last-site").length) {
+              window.location.replace($("#next-site").attr("href"));
+            }
+          }, 2000);
         };
 
         var fail = function(xhr, status, error) {
@@ -98,7 +102,7 @@
           $("#review-score-card").animate(
             { scrollTop: $("#review-score-card").prop("scrollHeight") },
             1000
-          );
+          ).focus();
         };
 
         var data = JSON.stringify({

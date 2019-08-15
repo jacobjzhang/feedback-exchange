@@ -1,5 +1,5 @@
 <h1 class="headline-title display-4 font-weight-bold">Submitted Scorecards</h1>
-<%= link_to 'See new matches', matches_path, class: "btn btn-warning btn-lg shadow my-3" %>
+<%= link_to 'See new matches', review_path, class: "btn btn-warning btn-lg shadow my-3" %>
 <% @score_cards.each do |sc| %>
   <div class="row mt-2 mb-4">
     <%= render 'shared/left_photo_link', project: sc.project, reviewed: true %>

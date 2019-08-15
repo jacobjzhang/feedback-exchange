@@ -82,7 +82,7 @@ class ProjectsController < ApplicationController
     def add_http_if_necessary
       params_url = params[:project]["url"]
       unless params_url[/\Ahttp:\/\//] || params_url[/\Ahttps:\/\//]
-        params[:project]["url"] = "http://#{params_url}"
+        params[:project]["url"] = "https://#{params_url}"
       end
     end
 

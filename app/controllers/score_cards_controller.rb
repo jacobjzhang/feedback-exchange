@@ -96,7 +96,7 @@ class ScoreCardsController < ApplicationController
   def upvote
     @score_card.liked_by current_user
     respond_to do |format|
-      format.html { redirect_to matches_path, notice: 'Thanks for upvoting this scorecard and improving our community!' }
+      format.html { redirect_to review_path, notice: 'Thanks for upvoting this scorecard and improving our community!' }
       format.json { head :no_content }
     end
   end
@@ -104,7 +104,7 @@ class ScoreCardsController < ApplicationController
   def downvote
     @score_card.downvote_from current_user
     respond_to do |format|
-      format.html { redirect_to matches_path, notice: 'Thanks for evaluating this scorecard and improving our community!' }
+      format.html { redirect_to review_path, notice: 'Thanks for evaluating this scorecard and improving our community!' }
       format.json { head :no_content }
     end
   end

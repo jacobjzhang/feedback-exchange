@@ -8,7 +8,8 @@ class ProjectProcessor
     # response = http.request(request)
     p project.url, res['X-Frame-Options']
     if res['X-Frame-Options']
-      project.update(can_frame: false)
+      # don't want to kick off infinite loop
+      project.update_column('can_frame', false)
     end
   end
 
