@@ -15,7 +15,8 @@
   </div>
   <div class="form-group">
     <%= form.label :url, 'URL' %>
-    <%= form.text_field :url, id: :project_url, class: 'form-control' %>
+    <p><small><em>Please be sure to include the https://</em></small></p>    
+    <%= form.text_field :url, id: :project_url, class: 'form-control', value: 'https://' %>
   </div>
   <div class="form-group">
     <%= form.label :description_and_desired_feedback %>
