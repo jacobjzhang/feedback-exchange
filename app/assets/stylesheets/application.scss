@@ -410,7 +410,8 @@ Header intro
 }
 
 .thumb-mid {
-	min-height: 300px;
+	min-height: 600px;
+	min-height: calc(100vh - 4em);
 	cursor: pointer;
 	width: 100%;
 	display: block;

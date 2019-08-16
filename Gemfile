@@ -38,6 +38,7 @@ gem 'acts-as-taggable-on', '~> 6.0'
 gem 'will_paginate', '~> 3.1.0'
 gem 'unread'
 gem 'acts_as_votable', '~> 0.12.0'
+gem 'certified'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

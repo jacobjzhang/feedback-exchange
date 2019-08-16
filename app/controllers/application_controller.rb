@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include ProjectHelper
+
   protect_from_forgery with: :exception
   before_action :store_user_location!, if: :storable_location?
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -6,7 +8,13 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource_or_scope)
     # stored_location_for(resource_or_scope) || matches_path || super
-    review_path || matches_path || super
+    # save list if there is a temp_list in the session
+    if session[:project].present?
+      handle_project_signup
+    else
+      #if there is not temp list in the session proceed as normal
+      review_path || matches_path || super
+    end
   end
 
   private

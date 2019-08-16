@@ -1,7 +1,8 @@
 class ProjectsController < ApplicationController
+  include ProjectHelper
+
   before_action :set_project, only: [:show, :matches, :edit, :update, :destroy]
-  before_action :authenticate_user!
-  after_action :find_first_match, only: [:create]
+  before_action :authenticate_user!, except: [:new, :create]
   before_action :require_permission, only: [:edit, :update, :delete]
 
   # GET /projects
@@ -17,7 +18,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = Project.new
+    @project = @project || Project.new
   end
 
   # GET /projects/1/edit
@@ -27,26 +28,35 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    handle_categories
-    add_http_if_necessary
+    if current_user.nil?
+      # Store the form data in the session so we can retrieve it after login
+      session[:project] = params[:project]
+      # Redirect the user to register/login
+      redirect_to new_user_registration_path
+    else
+      handle_params_categories
+      add_http_if_necessary
 
-    @project = Project.new(project_params.merge(user: current_user))
+      @project = Project.new(project_params.merge(user: current_user))
 
-    respond_to do |format|
-      if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.<br \>Your website will be shown to other users once you have feedback credits. <strong><u><a href="/review">Get some by submitting a scorecard here</a></u></strong>.' }
-        format.json { render :show, status: :created, location: @project }
-      else
-        format.html { render :new }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @project.save
+          format.html { redirect_to @project, notice: 'Project was successfully created.<br \>Your website will be shown to other users once you have feedback credits. <strong><u><a href="/review">Get some by submitting a scorecard here</a></u></strong>.' }
+          format.json { render :show, status: :created, location: @project }
+        else
+          format.html { render :new }
+          format.json { render json: @project.errors, status: :unprocessable_entity }
+        end
       end
+
+      find_first_match
     end
   end
 
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
-    handle_categories
+    handle_params_categories
     add_http_if_necessary
 
     respond_to do |format|
@@ -71,14 +81,6 @@ class ProjectsController < ApplicationController
   end
 
   private
-    def handle_categories
-      if params[:project]['categories']
-        categories = params[:project]['categories'].compact
-        params[:project]['category_list'] = categories.join(', ')
-        params[:project].delete('categories')
-      end
-    end
-
     def add_http_if_necessary
       params_url = params[:project]["url"]
       unless params_url[/\Ahttp:\/\//] || params_url[/\Ahttps:\/\//]

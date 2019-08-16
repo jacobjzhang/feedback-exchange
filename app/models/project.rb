@@ -12,7 +12,7 @@ class Project < ApplicationRecord
   validates_uniqueness_of :url
 
   before_save :ensure_https
-  # after_save :process_project
+  after_save :process_project
 
   def categories; end
 

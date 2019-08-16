@@ -12,7 +12,7 @@
             <a class="nav-link" href="/review"><strong>Start Reviewing</strong></a>
          </li>
          <li class="nav-item">
-            <a class="nav-link" href="/projects">
+            <a class="nav-link" href="<%= current_user ? '/projects' : '/projects/new' %>">
               <strong>
                 Projects & Scorecards 
                 <% if @unread_scorecards && @unread_scorecards.length > 0 %>

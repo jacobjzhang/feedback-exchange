@@ -15,7 +15,11 @@ class ProjectProcessor
 
   def self.process_all!
     Project.all.each do |project|
-      process!(project)
+      begin
+        process!(project)
+      rescue
+        project.update_column('can_frame', false)
+      end
     end
   end
 

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UsersRegistrationsController < Devise::RegistrationsController
+  include ProjectHelper
+
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -63,7 +65,12 @@ class UsersRegistrationsController < Devise::RegistrationsController
   # The path used after sign up.
   def after_sign_up_path_for(resource)
     # super(resource)
-    '/projects'
+    if session[:project].present?
+      handle_project_signup
+    else
+      #if there is not temp list in the session proceed as normal
+      '/projects'
+    end
   end
 
   def after_update_path_for(resource)

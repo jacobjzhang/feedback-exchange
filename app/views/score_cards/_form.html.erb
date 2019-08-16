@@ -10,27 +10,27 @@
     </div>
   <% end %>
   <div class="form-group">
-    <%= form.label :concept_and_product_market_fit %>
+    <strong><%= form.label :concept_and_product_market_fit %></strong>
     <%= form.text_field :idea_rating, id: :score_card_idea_rating, class: "form-control kv-ltr-theme-fas-star rating-loading" %>
     <%= form.text_area :idea, id: :score_card_idea, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= form.label :site_design_and_clarity %>
+    <strong><%= form.label :site_design_and_clarity %></strong>
     <%= form.text_field :design_rating, id: :score_card_design_rating, class: "form-control kv-ltr-theme-fas-star rating-loading" %>
     <%= form.text_area :design, id: :score_card_design, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= form.label :overall_user_experience %>
+    <strong><%= form.label :overall_user_experience %></strong>
     <%= form.text_field :experience_rating, id: :score_card_experience_rating, class: "form-control kv-ltr-theme-fas-star rating-loading" %>
     <%= form.text_area :experience, id: :score_card_experience, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= form.label :monetization_and_potential_for %>
+    <strong><%= form.label :monetization_and_potential_for %></strong>
     <%= form.text_field :monetization_rating, id: :score_card_monetization_rating, class: "form-control kv-ltr-theme-fas-star rating-loading" %>    
     <%= form.text_area :monetization, id: :score_card_monetization, class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= form.label :comments_and_suggestions %>
+    <strong><%= form.label :comments_and_suggestions %></strong>
     <%= form.text_area :suggestions, id: :score_card_suggestions, class: "form-control" %>
   </div>
   <div class="actions">

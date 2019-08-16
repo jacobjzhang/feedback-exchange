@@ -18,7 +18,7 @@ class ScoreCard < ApplicationRecord
 
   def written_text_must_be_40
     unless idea.length + design.length + experience.length + monetization.length + suggestions.length > 40
-      errors.add(:base, "Please write at least 40 characters of feedback. All text fields are considered.")
+      errors.add(:base, "Please write at least 40 characters of feedback combined. All text fields are considered.")
     end
   end
 end

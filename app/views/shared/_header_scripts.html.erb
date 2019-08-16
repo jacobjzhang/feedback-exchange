@@ -25,6 +25,9 @@
     }
   });
 </script>
+<% if action_name == 'review' %>
+  <meta name="turbolinks-cache-control" content="no-cache">
+<% end %>
 <script type="text/javascript" defer>
   $(document).on('turbolinks:load', function() {
     /*!
@@ -78,8 +81,9 @@
           );
           $("#review-score-card").animate(
             { scrollTop: $("#review-score-card").prop("scrollHeight") },
-            1000
-          ).focus();
+            500
+          );
+          $('#score_card_form').focus();
           setTimeout(function() {
             if (!$("#last-site").length) {
               window.location.replace($("#next-site").attr("href"));
@@ -93,16 +97,17 @@
             "<p><strong>There were some issues with your submission:</strong></p>";
           for (var k of Object.keys(message)) {
             if (k === "base") {
-              msgStr = msgStr + "<p>" + message[k] + "</p>";
+              msgStr = msgStr + "<p>" + message[k].toString() + "</p>";
             } else {
-              msgStr = msgStr + "<p>" + k + " " + message[k] + "</p>";
+              msgStr = msgStr + "<p><strong>" + k.toString().replace('_', ' ') + "</strong> " + message[k].toString().replace('sign in', '<u><a href="/users/sign_in">sign in</a></u>').replace('sign up', '<u><a href="/users/sign_up">sign up</a></u>') + "</p>";
             }
           }
           $("#score_card_output").html(msgStr);
           $("#review-score-card").animate(
-            { scrollTop: $("#review-score-card").prop("scrollHeight") },
-            1000
-          ).focus();
+            { scrollTop: $("#review-score-card").prop("scrollHeight") + 200 },
+            500
+          );
+          $('#score_card_form').focus();
         };
 
         var data = JSON.stringify({

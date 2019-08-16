@@ -1,6 +1,6 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:review]
 
   # GET /matches
   # GET /matches.json
@@ -14,28 +14,36 @@ class MatchesController < ApplicationController
   end
 
   def review
-    match_len = my_matches.length
-    page_id_param = params[:page_id].to_i
+    # kind of hacky
+    # if not logged in, show a random project or show the project based on page_id
+    # otherwise if logged in, generate a new array and go in order
+    if !current_user
+      @project = params[:page_id] ? Project.find(params[:page_id]) : Project.all.sample
+      @next_page = ''
+    else
+      match_len = my_matches.length
+      page_id_param = params[:page_id].to_i
+  
+      if match_len == 0 || (page_id_param >= match_len - 1)
+        return redirect_to '/matches'
+      end
 
-    if match_len == 0 || (page_id_param >= match_len - 1)
-      return redirect_to '/matches'
+      if params[:page_id]
+        @match = my_matches[page_id_param]
+        @project = @match.project
+        @next_page = page_id_param + 1
+      else
+        @match = my_matches.first
+        @project = @match.project
+        @next_page = 1
+      end
+
+      if params[:page_id].to_i >= (match_len - 1)
+        @hide_next = true
+      end
     end
 
     @score_card = ScoreCard.new
-
-    if params[:page_id]
-      @match = my_matches[page_id_param]
-      @next_page = page_id_param + 1
-    else
-      @match = my_matches.first
-      @next_page = 1
-    end
-
-    @project = @match.project
-
-    if params[:page_id].to_i >= (match_len - 1)
-      @hide_next = true
-    end
   end
 
   # GET /matches/1
