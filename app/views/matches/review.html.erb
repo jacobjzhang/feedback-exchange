@@ -37,6 +37,9 @@
               <%= simple_format(@project.description) %>
           </p>
           <div class="w-100" id="score_card_form">
+            <% unless current_user %>
+              <p class="text-danger"><em>Note: you must be <u><a href="/users/sign_in" target="_blank">signed in</a></u> in order to submit a scorecard.</em></p>
+            <% end %>                  
             <%= render 'score_cards/form', score_card: @score_card, project: @project %>
           </div>
           <div id="score_card_output" class="my-4"><p></p></div>

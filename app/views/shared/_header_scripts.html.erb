@@ -99,7 +99,7 @@
             if (k === "base") {
               msgStr = msgStr + "<p>" + message[k].toString() + "</p>";
             } else {
-              msgStr = msgStr + "<p><strong>" + k.toString().replace('_', ' ') + "</strong> " + message[k].toString().replace('sign in', '<u><a href="/users/sign_in">sign in</a></u>').replace('sign up', '<u><a href="/users/sign_up">sign up</a></u>') + "</p>";
+              msgStr = msgStr + "<p><strong>" + k.toString().replace('_', ' ') + "</strong> " + message[k].toString().replace('sign in', '<u><a href="/users/sign_in" target="_blank">sign in</a></u>').replace('sign up', '<u><a href="/users/sign_up" target="_blank">sign up</a></u>') + "</p>";
             }
           }
           $("#score_card_output").html(msgStr);
