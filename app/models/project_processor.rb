@@ -1,7 +1,19 @@
 require 'uri'
 require 'net/http'
+require 'nokogiri'
 
 class ProjectProcessor
+  def self.retrieve_meta(url)
+    res = fetch(url)
+
+    doc = Nokogiri::HTML(res.body)
+    title = doc.title
+    contents = doc.search("meta[name='description']")
+    description = contents[0]['content']
+
+    { url: url, name: title, description: description}
+  end
+
   def self.process!(project)
     res = fetch(project.url)
 
