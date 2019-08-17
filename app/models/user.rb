@@ -12,6 +12,8 @@ class User < ApplicationRecord
 
   after_commit :find_first_match, only: [:create, :update]
 
+  scope :real, -> { where(stage_type: 'real') }
+
   def interests; end
 
   def find_first_match

@@ -1,6 +1,6 @@
 class MatchCreator < ApplicationRecord
   def self.create_matches
-    User.includes(:taggings).where(status: 'idle').each do |user|
+    User.real.includes(:taggings).where(status: 'idle').each do |user|
       create_match(user)
 
       if user.matches.where(status: 'pending').count > 20
@@ -19,7 +19,7 @@ class MatchCreator < ApplicationRecord
 
   def self.fan_out_project!(user)
     user.projects.each do |project|
-      potential_users = User.tagged_with(project.category_list, any: true)
+      potential_users = User.real.tagged_with(project.category_list, any: true)
       potential_users.each do |potential_user|
         next if user == potential_user
         match = Match.find_by(project: project, user: potential_user)
@@ -38,11 +38,11 @@ class MatchCreator < ApplicationRecord
     if memo[interest_list]
       potential_projects = memo[interest_list]
     else
-      potential_projects = Project.tagged_with(interest_list, any: true)
+      potential_projects = Project.real.tagged_with(interest_list, any: true)
       memo[interest_list] = potential_projects
     end
 
-    projects_not_reviewed = Project.where("id NOT IN 
+    projects_not_reviewed = Project.real.where("id NOT IN 
       ( 
              SELECT matches.project_id 
              FROM   projects

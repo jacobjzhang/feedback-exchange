@@ -14,6 +14,9 @@ class Project < ApplicationRecord
   before_save :ensure_https
   after_save :process_project
 
+  scope :fake, -> { where(stage_type: 'fake') }
+  scope :real, -> { where(stage_type: 'real') }  
+
   def categories; end
 
   def url_is_valid
