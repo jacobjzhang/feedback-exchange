@@ -43,6 +43,8 @@ class MatchesController < ApplicationController
       end
     end
 
+    @project.can_frame = false if mobile_device?
+
     @score_card = ScoreCard.new
   end
 
@@ -132,5 +134,13 @@ class MatchesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def match_params
       params.require(:match).permit(:creator_first, :creator_second, :score_card_from_first, :score_card_from_second, :will_exchange_info_first, :will_exchange_info_second)
+    end
+
+    def mobile_device?
+      if session[:mobile_param]
+        session[:mobile_param] == "1"
+      else
+        request.user_agent =~ /Mobile|webOS/
+      end
     end
 end

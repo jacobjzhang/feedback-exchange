@@ -410,12 +410,17 @@ Header intro
 }
 
 .thumb-mid {
-	min-height: 600px;
-	min-height: calc(100vh - 4em);
+	min-height: 300px;
+	min-height: calc(50vh);
 	cursor: pointer;
 	width: 100%;
 	display: block;
 	position: relative;
+
+	@media (min-width: 768px) {
+		min-height: 600px;
+		min-height: calc(100vh - 4em);
+	}
 
 	.link-full-div {
 		width: 100%;
