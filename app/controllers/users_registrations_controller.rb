@@ -8,6 +8,7 @@ class UsersRegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
+    @potential_handle = (('a'..'z').to_a + (0..9).to_a).shuffle[0,10].join    
     super
   end
 
