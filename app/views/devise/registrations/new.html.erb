@@ -5,11 +5,13 @@
 
   <div class="form-group">
     <%= f.label :username %> (suggested)
+    <p><small><em>We recommend giving feedback anonymously so you don't hold back!</em></small></p>    
     <%= f.text_field :name, autofocus: true, autocomplete: 'name', class: 'form-control', value: @potential_handle %>
   </div>
 
   <div class="form-group">
     <%= f.label :email %>
+    <p><small><em>So we can email you in the future when your project gets a scorecard.</em></small></p>    
     <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>
   </div>
 
