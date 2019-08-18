@@ -20,7 +20,7 @@ class Project < ApplicationRecord
   def categories; end
 
   def url_is_valid
-    errors.add(:base, "URL is invalid.") unless valid_url?(url)
+    errors.add(:base, "URL is invalid. Please ensure you have the https://") unless valid_url?(url)
   end
 
   def valid_url?(url)

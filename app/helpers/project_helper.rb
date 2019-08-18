@@ -8,7 +8,6 @@ module ProjectHelper
 
     #redirect
     flash[:notice] = "You're now logged in. Nice project, btw :)"
-    project_path(@project)
   end
 
   def handle_params_categories

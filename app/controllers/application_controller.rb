@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
     if session[:project].present?
       handle_project_signup
       session.delete(:project)
+      projects_path || super
     else
       #if there is not temp list in the session proceed as normal
       review_path || matches_path || super
