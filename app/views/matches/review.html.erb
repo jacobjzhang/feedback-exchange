@@ -8,8 +8,8 @@
           style="background: linear-gradient(
             rgba(0, 0, 0, 0.4),
             rgba(0, 0, 0, 0.4)
-          ), url(<%= "//image.thum.io/get/crop/1600/#{@project.url}" %>); background-size: cover;">
-            <img src="<%= "//image.thum.io/get/crop/1600/#{@project.url}" %>" style="visibility: hidden;" class="img-fluid site-thumb" />
+          ), url(<%= "//image.thum.io/get/crop/#{@thumb_width}/#{@project.url}" %>); background-size: cover;">
+            <img src="<%= "//image.thum.io/get/crop/#{@thumb_width}/#{@project.url}" %>" style="visibility: hidden;" class="img-fluid site-thumb" />
             <a href="<%= @project.url %>" target="_blank" class="link-full-div">
               <div class="site-thumb-center">
                 <h2>Visit <i class="fa fa-external-link"></i></h2>
@@ -26,7 +26,7 @@
             <a class="w-100 btn btn-secondary btn shadow" id="last-site" href="#" role="button info">Get more sites &raquo;</a>
         <% end %>
         </div>
-        <div id="review-score-card" class="w-100 h-100 overflow-auto p-4 pb-5">
+        <div id="review-score-card" class="w-100 p-4 pb-5">
           <h4>URL</h4>
           <p>
             <a href="<%= @project.url %>" target="_blank"><%= @project.url %> <i class="fa fa-external-link"></i></a>

@@ -411,7 +411,7 @@ Header intro
 
 .thumb-mid {
 	min-height: 300px;
-	min-height: calc(50vh);
+	min-height: calc(30vh);
 	cursor: pointer;
 	width: 100%;
 	display: block;
@@ -464,5 +464,12 @@ Header intro
 }
 
 .matches-sidebar {
-	height: calc(100vh - 3.5em);
+	@media (min-width: 768px) {
+		height: calc(100vh - 3.5em);
+		overflow: auto;
+
+		#review-score-card {
+			height: 100%;
+		}
+	}
 }

@@ -44,6 +44,7 @@ class MatchesController < ApplicationController
     end
 
     @project.can_frame = false if mobile_device?
+    @thumb_width = mobile_device? ? 900 : 1600
 
     @score_card = ScoreCard.new
   end
