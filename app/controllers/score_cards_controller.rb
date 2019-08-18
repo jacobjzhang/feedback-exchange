@@ -1,7 +1,7 @@
 class ScoreCardsController < ApplicationController
   before_action :set_project
   before_action :set_score_card, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:create]
   after_action :fan_out_project, only: [:create]
   before_action :require_permission, except: [:new, :create, :show_previous, :upvote, :downvote]
 
@@ -53,7 +53,7 @@ class ScoreCardsController < ApplicationController
   # POST /score_cards
   # POST /score_cards.json
   def create
-    @score_card = ScoreCard.new(score_card_params.merge(user: current_user, project: @project, submitted_at: Time.zone.now))
+    @score_card = ScoreCard.new(score_card_params.merge(user: current_user || nil, project: @project, submitted_at: Time.zone.now))
 
     respond_to do |format|
       if @score_card.save
@@ -111,7 +111,9 @@ class ScoreCardsController < ApplicationController
 
   private
     def fan_out_project
-      MatchCreator.fan_out_project!(current_user)
+      if current_user
+        MatchCreator.fan_out_project!(current_user)
+      end
     end
 
     def set_project

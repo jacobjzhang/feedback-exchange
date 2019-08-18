@@ -79,8 +79,8 @@
           $("#score_card_output").html(
             "<strong>Thanks!</strong><p>Your scorecard has been submitted and will be delivered to the maker of this project.<p>Now redirecting you to the next site...</p>"
           );
-          $("#review-score-card").animate(
-            { scrollTop: $("#review-score-card").prop("scrollHeight") },
+          $(".matches-sidebar").animate(
+            { scrollTop: $(".matches-sidebar").prop("scrollHeight") },
             500
           );
           $('#score_card_form').focus();
@@ -103,8 +103,8 @@
             }
           }
           $("#score_card_output").html(msgStr);
-          $("#review-score-card").animate(
-            { scrollTop: $("#review-score-card").prop("scrollHeight") + 200 },
+          $(".matches-sidebar").animate(
+            { scrollTop: $(".matches-sidebar").prop("scrollHeight") + 200 },
             500
           );
           $('#score_card_form').focus();
