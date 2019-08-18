@@ -1,4 +1,4 @@
-<%= form_for(@project) do |form| %>
+<%= form_for(@project, validate: true) do |form| %>
   <% if project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -11,12 +11,12 @@
   <% end %>
   <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :project_name, class: 'form-control' %>
+    <%= form.text_field :name, id: :project_name, class: 'form-control', required: true, validate: true %>
   </div>
   <div class="form-group">
     <%= form.label :url, 'URL' %>
     <p><small><em>Please be sure to include the https://</em></small></p>    
-    <%= form.text_field :url, id: :project_url, class: 'form-control', value: 'https://' %>
+    <%= form.text_field :url, id: :project_url, class: 'form-control', value: @project.url || 'https://', required: true, validate: true %>
   </div>
   <div class="form-group">
     <%= form.label :description_and_desired_feedback %>

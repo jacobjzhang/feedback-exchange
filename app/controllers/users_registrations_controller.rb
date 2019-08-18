@@ -68,6 +68,7 @@ class UsersRegistrationsController < Devise::RegistrationsController
     # super(resource)
     if session[:project].present?
       handle_project_signup
+      session.delete(:project)
     else
       #if there is not temp list in the session proceed as normal
       '/projects'

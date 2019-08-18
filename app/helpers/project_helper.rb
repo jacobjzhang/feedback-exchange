@@ -4,7 +4,7 @@ module ProjectHelper
     # save project
     @project = current_user.projects.create(session[:project])
     # clear session
-    session[:project] = nil
+    session.delete(:project)
 
     #redirect
     flash[:notice] = "You're now logged in. Nice project, btw :)"

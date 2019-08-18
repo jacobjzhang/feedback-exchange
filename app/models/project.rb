@@ -11,11 +11,11 @@ class Project < ApplicationRecord
   validate :url_is_valid
   validates_uniqueness_of :url
 
-  before_save :ensure_https
+  # after_save :ensure_https
   after_save :process_project
 
   scope :fake, -> { where(stage_type: 'fake') }
-  scope :real, -> { where(stage_type: 'real') }  
+  scope :real, -> { where(stage_type: 'real') }
 
   def categories; end
 
@@ -30,13 +30,17 @@ class Project < ApplicationRecord
     false
   end
 
-  def ensure_https
-    if url.include?('http://')
-      url = url.gsub('http://', 'https://')
-    end
-  end
+  # def ensure_https
+  #   if url.include?('http://')
+  #     url = url.gsub('http://', 'https://')
+  #   end
+  # end
 
   def process_project
-    ProjectProcessor.process!(self)
+    begin
+      ProjectProcessor.process!(self)
+    rescue
+      self.update_column('can_frame', false)
+    end
   end
 end

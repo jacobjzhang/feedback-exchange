@@ -29,6 +29,11 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     if current_user.nil?
+      proj = Project.new(params[:object])
+      unless proj.valid?
+        return format.html { render :new }
+      end
+
       # Store the form data in the session so we can retrieve it after login
       session[:project] = params[:project]
       # Redirect the user to register/login
