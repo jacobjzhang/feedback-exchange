@@ -10,13 +10,13 @@
                 <% if sc %>
                   <% if @unread_scorecards.include?(sc) %>
                     <strong>
-                      <%= link_to "#{sc.created_at.strftime("%m/%d/%y")} by #{sc.user.name}", project_score_card_path(project, sc) %>
+                      <%= link_to "#{sc.created_at.strftime("%m/%d/%y")} by #{sc.user ? sc.user.name : 'Anonymous'}", project_score_card_path(project, sc) %>
                       <span class="badge badge-success">
                         New
                       </span>
                     </strong>
                   <% else %>
-                    <%= link_to "#{sc.created_at.strftime("%m/%d/%y")} by #{sc.user.name}", project_score_card_path(project, sc) %>
+                    <%= link_to "#{sc.created_at.strftime("%m/%d/%y")} by #{sc.user ? sc.user.name : 'Anonymous'}", project_score_card_path(project, sc) %>
                   <% end %>
                   <br />
                 <% end %>

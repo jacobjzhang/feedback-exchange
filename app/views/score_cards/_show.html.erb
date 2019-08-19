@@ -25,6 +25,6 @@
     <p><%= score_card.suggestions %></p>
   </div>
   <div class="mb-4">
-    <strong>Submitted on <%= score_card.created_at.strftime("%B %d, %Y") %> by <%= score_card.user.name %></strong>
+    <strong>Submitted on <%= score_card.created_at.strftime("%B %d, %Y") %> by <%= score_card.user ? score_card.user.name : "Anonymous" %></strong>
   </div>    
 </div>
