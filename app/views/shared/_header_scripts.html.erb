@@ -57,6 +57,7 @@
       } else {
         $('#next-button-container').addClass('mt-2');        
       }
+      $("#score_card_form form").off();
       $("#score_card_form form").on("submit", function(e) {
         e.preventDefault();
         e.stopPropagation();

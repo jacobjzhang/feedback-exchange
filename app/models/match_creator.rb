@@ -35,12 +35,12 @@ class MatchCreator < ApplicationRecord
 
   def self.find_and_match_projects(user, interest_list)
     # more efficient project lookups
-    if memo[interest_list]
-      potential_projects = memo[interest_list]
-    else
-      potential_projects = Project.real.tagged_with(interest_list, any: true)
-      memo[interest_list] = potential_projects
-    end
+    # if memo[interest_list]
+    #   potential_projects = memo[interest_list]
+    # else
+    #   potential_projects = Project.real.tagged_with(interest_list, any: true)
+    #   memo[interest_list] = potential_projects
+    # end
 
     projects_not_reviewed = Project.real.where("id NOT IN 
       ( 
@@ -50,7 +50,7 @@ class MatchCreator < ApplicationRecord
              ON     matches.project_id = projects.id 
              WHERE  matches.user_id = #{user.id})
       AND 
-      projects.user_id != #{user.id}").limit(5)
+      projects.user_id != #{user.id}").order("RANDOM()").limit(5)
 
     projects_not_reviewed.each do |project|
       match = Match.find_by(project: project, user: user)

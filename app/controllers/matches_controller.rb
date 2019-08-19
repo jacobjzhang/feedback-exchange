@@ -124,7 +124,8 @@ class MatchesController < ApplicationController
 
   private
     def my_matches
-      @my_matches ||= Match.where(user: current_user).where(status: 'pending')
+      # don't memo-ize after submission
+      Match.where(user: current_user).where(status: 'pending')
     end
 
     # Use callbacks to share common setup or constraints between actions.
