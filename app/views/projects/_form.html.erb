@@ -25,7 +25,7 @@
   </div>
   <div class="form-group">
     <%= form.label :categories %>
-    <%= form.collection_select :categories, Category.all, :name, :label, { selected: @project.category_list }, { multiple: true, class: "multi-select w-100", placeholder: "Select the categories/audiences for this project" } %>
+    <%= form.collection_select :categories, Category.all.order(name: :asc), :name, :label, { selected: @project.category_list }, { multiple: true, class: "multi-select w-100", placeholder: "Select the categories/audiences for this project" } %>
   </div>  
   <div class="actions">
     <%= form.button :submit, class: 'btn btn-warning shadow' %>

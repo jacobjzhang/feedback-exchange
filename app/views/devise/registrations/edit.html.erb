@@ -34,7 +34,7 @@
 
   <div class="form-group">
     <%= f.label :sites_to_critique %>
-    <%= f.collection_select :interests, Category.all, :name, :label, { selected: resource.interest_list, prompt: true }, { multiple: true, class: "multi-select w-100", placeholder: 'Choose the kinds of sites you\'re into.' } %>
+    <%= f.collection_select :interests, Category.all.order(name: :asc), :name, :label, { selected: resource.interest_list, prompt: true }, { multiple: true, class: "multi-select w-100", placeholder: 'Choose the kinds of sites you\'re into.' } %>
   </div>  
 
   <div class="form-group">
